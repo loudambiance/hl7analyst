@@ -90,6 +90,21 @@ namespace HL7Lib.Base
             Random rand = new Random();
             return rand.Next(99999999).ToString();
         }
+
+
+        /// <summary>
+        /// Sets a random phone number for the patient, used to de-identify the HL7 message
+        /// </summary>
+        /// <returns>Returns a randomly generated phone number</returns>
+        public static string RandomPhone(string format = "{0}-{1}-{2}") 
+        {
+            if (!format.Contains("{0}") || !format.Contains("{1}") || !format.Contains("{2}"))
+                format = "{0}-{1}-{2}";
+            Random rand = new Random();
+            return String.Format(format, rand.Next(999).ToString(),
+                rand.Next(999).ToString(), rand.Next(9999).ToString());
+        }
+
         /// <summary>
         /// Creates an ACK from the MSH segment of the associated message
         /// </summary>
