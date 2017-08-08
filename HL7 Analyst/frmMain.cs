@@ -307,7 +307,7 @@ namespace HL7_Analyst
             {
                 Settings settings = new Settings();
                 settings.GetSettings();
-                if (settings.CheckForUpdates)
+               /* if (settings.CheckForUpdates)
                 {
                     if (UpdateChecker.UpdateCheck())
                     {
@@ -315,7 +315,7 @@ namespace HL7_Analyst
                         fua.ShowDialog();
                     }
                     UpdateChecker.SaveLastRunDate();
-                }
+                }*/
                 tsmHideEmpty.Checked = settings.HideEmptyFields;
                 Extensions = settings.Extensions;
                 StringBuilder sb = new StringBuilder();

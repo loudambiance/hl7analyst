@@ -4,40 +4,499 @@
         <name>HL7Lib</name>
     </assembly>
     <members>
-        <member name="T:HL7Lib.Segments.QAK">
+        <member name="T:HL7Lib.Base.Component">
             <summary>
-            QAK Class: Constructs an HL7 QAK Segment Object
+            Component Class: Constructs an HL7 Component Object
             </summary>
         </member>
-        <member name="T:HL7Lib.Segments.OM5">
+        <member name="P:HL7Lib.Base.Component.Name">
             <summary>
-            OM5 Class: Constructs an HL7 OM5 Segment Object
+            The Name of the Component
             </summary>
         </member>
-        <member name="T:HL7Lib.Segments.DRG">
+        <member name="P:HL7Lib.Base.Component.ID">
             <summary>
-            DRG Class: Constructs an HL7 DRG Segment Object
+            The ID of the Component
             </summary>
         </member>
-        <member name="T:HL7Lib.Segments.CM0">
+        <member name="P:HL7Lib.Base.Component.Value">
             <summary>
-            CM0 Class: Constructs an HL7 CM0 Segment Object
+            The Value of the Component
             </summary>
         </member>
-        <member name="T:HL7Lib.Segments.BPX">
+        <member name="P:HL7Lib.Base.Component.IDParts">
             <summary>
-            BPX Class: Constructs an HL7 BPX Segment Object
+            The ComponentID Parts for the ID: Read Only
             </summary>
         </member>
-        <member name="T:HL7Lib.Segments.BLC">
+        <member name="M:HL7Lib.Base.Component.#ctor">
             <summary>
-            BLC Class: Constructs an HL7 BLC Segment Object
+            Empty Constructor
             </summary>
         </member>
-        <member name="T:HL7Lib.Segments.AL1">
+        <member name="M:HL7Lib.Base.Component.#ctor(System.String)">
             <summary>
-            AL1 Class: Constructs an HL7 AL1 Segment Object
+            Constructs a Component with the specified Name
             </summary>
+            <param name="_Name">The Name of the Component to Construct</param>
+        </member>
+        <member name="M:HL7Lib.Base.Component.#ctor(System.String,System.String)">
+            <summary>
+            Constructs a Component with the specified Name and ID
+            </summary>
+            <param name="_Name">The Name of the Component to Construct</param>
+            <param name="_ID">The ID of the Component to Construct</param>
+        </member>
+        <member name="T:HL7Lib.Base.ComponentID">
+            <summary>
+            ComponentID Class: Creates a ComponentID object
+            </summary>
+        </member>
+        <member name="P:HL7Lib.Base.ComponentID.SegmentName">
+            <summary>
+            The SegmentName of the Component ID string
+            </summary>
+        </member>
+        <member name="P:HL7Lib.Base.ComponentID.FieldIndex">
+            <summary>
+            The FieldIndex of the Component ID string
+            </summary>
+        </member>
+        <member name="P:HL7Lib.Base.ComponentID.ComponentIndex">
+            <summary>
+            The ComponentIndex of the Component ID string
+            </summary>
+        </member>
+        <member name="T:HL7Lib.Base.Field">
+            <summary>
+            Field Class: Constructs an HL7 Field Object
+            </summary>
+        </member>
+        <member name="P:HL7Lib.Base.Field.Name">
+            <summary>
+            The Name of the Field
+            </summary>
+        </member>
+        <member name="P:HL7Lib.Base.Field.Components">
+            <summary>
+            The List of Components Associated with this Field
+            </summary>
+        </member>
+        <member name="M:HL7Lib.Base.Field.#ctor">
+            <summary>
+            Empty Constructor
+            </summary>
+        </member>
+        <member name="M:HL7Lib.Base.Field.#ctor(System.String)">
+            <summary>
+            Constructs a Field with the specified Name
+            </summary>
+            <param name="_Name">The Name of the Field to Construct</param>
+        </member>
+        <member name="M:HL7Lib.Base.Field.#ctor(System.String,System.Collections.Generic.List{HL7Lib.Base.Component})">
+            <summary>
+            Constructs a Field with the specified Name and Components List
+            </summary>
+            <param name="_Name">The Name of the Field to Construct</param>
+            <param name="_Components">The list of Components for the Field to Construct</param>
+        </member>
+        <member name="M:HL7Lib.Base.Field.SegName">
+            <summary>
+            Sets a static field for all Segment Name Fields
+            </summary>
+            <returns>Returns the segment name field</returns>
+        </member>
+        <member name="T:HL7Lib.Base.Helper">
+            <summary>
+            Helper Class: Used to setup helper objects
+            </summary>
+        </member>
+        <member name="M:HL7Lib.Base.Helper.RandomFirstName(System.String)">
+            <summary>
+            Sets a random first name for the PID segment, used to de-identify the HL7 message
+            </summary>
+            <param name="Sex">The sex in the PID segment</param>
+            <returns>Returns a randomly selected name from a list of names based on the sex of the patient</returns>
+        </member>
+        <member name="M:HL7Lib.Base.Helper.RandomLastName">
+            <summary>
+            Sets a random last name for the PID segment, used to de-identify the HL7 message.
+            </summary>
+            <returns>Returns a randomly selected name from a list of names</returns>
+        </member>
+        <member name="M:HL7Lib.Base.Helper.RandomAddress">
+            <summary>
+            Sets a random street address, used to de-identify the HL7 message.
+            </summary>
+            <returns>Returns a randomly selected street address</returns>
+        </member>
+        <member name="M:HL7Lib.Base.Helper.RandomMRN">
+            <summary>
+            Sets a random MRN for the patient, used to de-identify the HL7 message
+            </summary>
+            <returns>Returns a randomly selected MRN</returns>
+        </member>
+        <member name="M:HL7Lib.Base.Helper.RandomPhone(System.String)">
+            <summary>
+            Sets a random phone number for the patient, used to de-identify the HL7 message
+            </summary>
+            <returns>Returns a randomly generated phone number</returns>
+        </member>
+        <member name="M:HL7Lib.Base.Helper.CreateAck(HL7Lib.Base.Message)">
+            <summary>
+            Creates an ACK from the MSH segment of the associated message
+            </summary>
+            <param name="InboundMessage">The inbound message</param>
+            <returns>The ack</returns>
+        </member>
+        <member name="M:HL7Lib.Base.Helper.ValidateAck(HL7Lib.Base.Message,HL7Lib.Base.Message)">
+            <summary>
+            Validates the ack against the message
+            </summary>
+            <param name="OutboundMessage">The message to use</param>
+            <param name="AckMessage">The ack to use</param>
+            <returns></returns>
+        </member>
+        <member name="T:HL7Lib.Base.Message">
+            <summary>
+            Message Class: Constructs an HL7 message object from a string
+            </summary>
+        </member>
+        <member name="P:HL7Lib.Base.Message.FieldSeperator">
+            <summary>
+            HL7 Message Field Seperator String
+            </summary>
+        </member>
+        <member name="P:HL7Lib.Base.Message.ComponentSeperator">
+            <summary>
+            HL7 Message Component Seperator String
+            </summary>
+        </member>
+        <member name="P:HL7Lib.Base.Message.SubComponentSeperator">
+            <summary>
+            HL7 Message SubComponent Seperator String
+            </summary>
+        </member>
+        <member name="P:HL7Lib.Base.Message.FieldRepeatSeperator">
+            <summary>
+            HL7 Message Repeating Field Seperator String
+            </summary>
+        </member>
+        <member name="P:HL7Lib.Base.Message.EscapeCharacter">
+            <summary>
+            HL7 Message Escape Character Seperator String
+            </summary>
+        </member>
+        <member name="P:HL7Lib.Base.Message.Segments">
+            <summary>
+            List of Segments in the HL7 message
+            </summary>
+        </member>
+        <member name="P:HL7Lib.Base.Message.SegmentNames">
+            <summary>
+            List of Segment names in HL7 message
+            </summary>
+        </member>
+        <member name="P:HL7Lib.Base.Message.DisplayString">
+            <summary>
+            The HL7 message string formatted for display
+            </summary>
+        </member>
+        <member name="M:HL7Lib.Base.Message.#ctor">
+            <summary>
+            Empty Constructor
+            </summary>
+        </member>
+        <member name="M:HL7Lib.Base.Message.#ctor(System.String)">
+            <summary>
+            Constructs an HL7 message from an HL7 message string
+            </summary>
+            <param name="HL7Message">The HL7 message string</param>
+        </member>
+        <member name="M:HL7Lib.Base.Message.Parse(System.String)">
+            <summary>
+            Parses the HL7 message string and creates a list of segments from it
+            </summary>
+            <param name="HL7Message">The HL7 message string</param>
+        </member>
+        <member name="M:HL7Lib.Base.Message.SetFields(System.String,System.String)">
+            <summary>
+            Sets the Fields of a single segment
+            </summary>
+            <param name="seg">The Segment string</param>
+            <param name="SegmentName">The Segment name</param>
+        </member>
+        <member name="M:HL7Lib.Base.Message.SetSegment(System.String,System.Collections.Generic.List{HL7Lib.Base.ParseField})">
+            <summary>
+            Calls one of the Parse HL7 Segment Methods based on the Segment Name
+            </summary>
+            <param name="SegmentName">The Segment Name to Parse</param>
+            <param name="l">The List of objects</param>
+        </member>
+        <member name="M:HL7Lib.Base.Message.SetSegName(System.String)">
+            <summary>
+            Sets the segment name of the specified segment
+            </summary>
+            <param name="seg">The segment to parse</param>
+            <returns>The segment name</returns>
+        </member>
+        <member name="M:HL7Lib.Base.Message.ParseCustom(System.Collections.Generic.List{HL7Lib.Base.ParseField},System.String)">
+            <summary>
+            Parses a custom (Z) segment from the message string
+            </summary>
+            <param name="HL7Segment">The fields and components from the custom segment string</param>
+            <param name="SegName">The segment name to use</param>
+            <returns>Returns a custom segment after processing</returns>
+        </member>
+        <member name="M:HL7Lib.Base.Message.ParseStandard(System.Collections.Generic.List{HL7Lib.Base.ParseField},HL7Lib.Base.Segments)">
+            <summary>
+            Parses a standard segment, this is the main processing method for most segments
+            </summary>
+            <param name="HL7Segment">The fields and components from the standard segment string</param>
+            <param name="seg">The Segments enum object to use for this segment</param>
+            <returns>Returns a standard segment after processing</returns>
+        </member>
+        <member name="M:HL7Lib.Base.Message.ParseMSH(System.Collections.Generic.List{HL7Lib.Base.ParseField})">
+            <summary>
+            Parses an MSH segment from the message string
+            </summary>
+            <param name="HL7Segment">The fields and components from the MSH segment string</param>
+            <returns>Returns an MSH segment after processing</returns>
+        </member>
+        <member name="M:HL7Lib.Base.Message.AddStandard(System.Collections.Generic.List{HL7Lib.Base.ParseField},HL7Lib.Base.Segment)">
+            <summary>
+            Adds a standard field and component to the specified segment
+            </summary>
+            <param name="standardFields">The standard field and components for the specified segment</param>
+            <param name="s">The segment to add to</param>
+        </member>
+        <member name="M:HL7Lib.Base.Message.AddRepeated(System.Collections.Generic.List{HL7Lib.Base.ParseField},HL7Lib.Base.Segment)">
+            <summary>
+            Adds a repeated field and component to the specified segment
+            </summary>
+            <param name="repeatedFields">The repeated field and components for the specified segment</param>
+            <param name="s">The segment to add to</param>
+        </member>
+        <member name="T:HL7Lib.Base.Extensions">
+            <summary>
+            Extension Methods
+            </summary>
+        </member>
+        <member name="M:HL7Lib.Base.Extensions.Get(System.Collections.Generic.List{HL7Lib.Base.Segment},System.String)">
+            <summary>
+            Pulls a specified segment from a list of segments by name.
+            </summary>
+            <param name="s">The list of segments to search.</param>
+            <param name="SegmentName">The segment name to pull.</param>
+            <returns>Returns the specified segment if it exists, else returns null.</returns>
+        </member>
+        <member name="M:HL7Lib.Base.Extensions.Get(System.Collections.Generic.List{HL7Lib.Base.Field},System.String)">
+            <summary>
+            Pulls a specified Field from a list of Fields by Name
+            </summary>
+            <param name="fList">The list of fields to search</param>
+            <param name="FieldName">The field name to pull</param>
+            <returns>Returns the specified field if it exists, else returns null.</returns>
+        </member>
+        <member name="M:HL7Lib.Base.Extensions.Get(System.Collections.Generic.List{HL7Lib.Base.Component},System.String)">
+            <summary>
+            Pulls a specified Component from a list of Components by Name
+            </summary>
+            <param name="cList">The list of components to search</param>
+            <param name="ComponentName">The component name to pull</param>
+            <returns>Returns the specified component if it exists, else returns null</returns>
+        </member>
+        <member name="M:HL7Lib.Base.Extensions.GetByID(System.Collections.Generic.List{HL7Lib.Base.Component},System.String)">
+            <summary>
+            Pulls a specified Component from a list of Components byID
+            </summary>
+            <param name="cList">The list of components to search</param>
+            <param name="ComponentID">The component ID to pull</param>
+            <returns>Returns the specified component if it exists, else returns null</returns>
+        </member>
+        <member name="M:HL7Lib.Base.Extensions.GetByID(HL7Lib.Base.Segment,System.String)">
+            <summary>
+            Gets the specified component from a segment by the component ID
+            </summary>
+            <param name="s">The segment</param>
+            <param name="ComponentID">The component ID</param>
+            <returns>Returns the specified component if it exists, else returns null</returns>
+        </member>
+        <member name="M:HL7Lib.Base.Extensions.ConvertID(System.String)">
+            <summary>
+            Takes a standard Component ID and converts it to a ComponentID object
+            </summary>
+            <param name="ComID">The Component ID string to convert</param>
+            <returns></returns>
+        </member>
+        <member name="M:HL7Lib.Base.Extensions.GetByID(HL7Lib.Base.Message,System.String)">
+            <summary>
+            Gets a list of components from a single message by ID
+            </summary>
+            <param name="m">The message to search</param>
+            <param name="ID">The ID of the component to pull</param>
+            <returns>Returns the list of components</returns>
+        </member>
+        <member name="M:HL7Lib.Base.Extensions.GetByID(System.Collections.Generic.List{HL7Lib.Base.Message},System.String)">
+            <summary>
+            Pulls a list of components from a list of messages based on the ID passed in
+            </summary>
+            <param name="msgs">The messages to pull from</param>
+            <param name="ID">The component ID to pull</param>
+            <returns>A list of components matching the ID passed in</returns>
+        </member>
+        <member name="M:HL7Lib.Base.Extensions.GetByID(HL7Lib.Base.Message,System.String,System.String)">
+            <summary>
+            Gets a single component from a single message by ID and with the specified value
+            </summary>
+            <param name="m">The message to search</param>
+            <param name="ID">The ID of the component to pull</param>
+            <param name="ValueString">The value of the component to search for</param>
+            <returns>The component returned</returns>
+        </member>
+        <member name="M:HL7Lib.Base.Extensions.DeIdentify(HL7Lib.Base.Message)">
+            <summary>
+            Removes patient identifying information from message and replaces it with made up patient data.
+            </summary>
+            <param name="m">The message to de-identify.</param>
+            <returns>Returns the original message without identifying information.</returns>
+        </member>
+        <member name="M:HL7Lib.Base.Extensions.ToHL7Date(System.DateTime)">
+            <summary>
+            Converts a regular date into an HL7 date string.
+            </summary>
+            <param name="d">The date to convert.</param>
+            <returns>Returns the HL7 date string.</returns>
+        </member>
+        <member name="M:HL7Lib.Base.Extensions.FromHL7Date(System.String)">
+            <summary>
+            Converts an HL7 date string into a .Net date.
+            </summary>
+            <param name="HL7Date">The HL7 date string to convert.</param>
+            <returns>Returns the date after conversion.</returns>
+        </member>
+        <member name="M:HL7Lib.Base.Extensions.GetIndex(System.Collections.Generic.List{HL7Lib.Base.Field},HL7Lib.Base.Field)">
+            <summary>
+            Gets the index of the specified field within the field list
+            </summary>
+            <param name="fList">The field list to pull</param>
+            <param name="f">The field to get the index for</param>
+            <returns>Returns the index of the specified field</returns>
+        </member>
+        <member name="M:HL7Lib.Base.Extensions.GetIndex(System.Collections.Generic.List{HL7Lib.Base.Component},HL7Lib.Base.Component)">
+            <summary>
+            Gets the index of the specified component within the component list
+            </summary>
+            <param name="cList">The component list to pull</param>
+            <param name="c">The component to get the index for</param>
+            <returns>Returns the index of the specified component</returns>
+        </member>
+        <member name="M:HL7Lib.Base.Extensions.UnEscape(System.String,System.String)">
+            <summary>
+            Unescapes escape sequences in the HL7 segment
+            </summary>
+            <param name="msg">The string to unescape</param>
+            <param name="EscapeCharacter">The escape character being used</param>
+            <returns>The unescaped string</returns>
+        </member>
+        <member name="T:HL7Lib.Base.ParseComponent">
+            <summary>
+            ParseComponent Class: Creates a Component value object
+            </summary>
+        </member>
+        <member name="P:HL7Lib.Base.ParseComponent.ComponentIndex">
+            <summary>
+            The ComponentIndex of this component value object
+            </summary>
+        </member>
+        <member name="P:HL7Lib.Base.ParseComponent.ComponentValue">
+            <summary>
+            The ComponentValue of this component value object
+            </summary>
+        </member>
+        <member name="M:HL7Lib.Base.ParseComponent.#ctor(System.Int32,System.String)">
+            <summary>
+            ParseComponent Constructor: Constructs a ParseComponent object
+            </summary>
+            <param name="Index">The Index of this instance of the ParseComponent</param>
+            <param name="Value">The Value of this instance of the ParseComponent</param>
+        </member>
+        <member name="T:HL7Lib.Base.ParseField">
+            <summary>
+            Parse Field Class: Used to store and manage Field information for parsing an HL7 message
+            </summary>
+        </member>
+        <member name="P:HL7Lib.Base.ParseField.FieldIndex">
+            <summary>
+            The FieldIndex of the Field from the HL7 message
+            </summary>
+        </member>
+        <member name="P:HL7Lib.Base.ParseField.FieldOrder">
+            <summary>
+            The FieldOrder used in inserting a repeating field into an HL7 segment
+            </summary>
+        </member>
+        <member name="P:HL7Lib.Base.ParseField.RepeatedField">
+            <summary>
+            The RepeatedField used to determine if a field is a repeating field
+            </summary>
+        </member>
+        <member name="P:HL7Lib.Base.ParseField.FieldValues">
+            <summary>
+            The FieldValues used to set the component values of this field
+            </summary>
+        </member>
+        <member name="M:HL7Lib.Base.ParseField.#ctor(System.Int32,System.Int32,System.Boolean,System.Collections.Generic.List{HL7Lib.Base.ParseComponent})">
+            <summary>
+            ParseField Constructor: Creates a new ParseField object
+            </summary>
+            <param name="Index">The Index to set to this ParseField objects FieldIndex property</param>
+            <param name="Order">The Order to set to this ParseField objects FieldOrder property</param>
+            <param name="Repeated">The Repeated to set to this ParseField objects RepeatedField property</param>
+            <param name="Values">The Values to set to this ParseField objects FieldValues property</param>
+        </member>
+        <member name="M:HL7Lib.Base.ParseField.CompareTo(HL7Lib.Base.ParseField)">
+            <summary>
+            Sorts a list of objects in reverse FieldIndex order
+            </summary>
+            <param name="obj">The ParseField object to compare</param>
+            <returns>Returns a 1 if the first objects FieldIndex is greater than the second objects else it returns a 0</returns>
+        </member>
+        <member name="T:HL7Lib.Base.Segments">
+            <summary>
+            Enum of supported segments
+            </summary>
+        </member>
+        <member name="T:HL7Lib.Base.Segment">
+            <summary>
+            Segment Class: Constructs an HL7 Segment Object
+            </summary>
+        </member>
+        <member name="P:HL7Lib.Base.Segment.Name">
+            <summary>
+            The Name of the Segment
+            </summary>
+        </member>
+        <member name="P:HL7Lib.Base.Segment.Description">
+            <summary>
+            The Segment Description
+            </summary>
+        </member>
+        <member name="P:HL7Lib.Base.Segment.Fields">
+            <summary>
+            The Field List for the Segment
+            </summary>
+        </member>
+        <member name="M:HL7Lib.Base.Segment.#ctor">
+            <summary>
+            Empty Constructor
+            </summary>
+        </member>
+        <member name="M:HL7Lib.Base.Segment.#ctor(HL7Lib.Base.Segments)">
+            <summary>
+            Constructs an HL7 segment for the specified Segments enum object
+            </summary>
+            <param name="seg">The Segments enum object to construct for</param>
         </member>
         <member name="T:HL7Lib.Properties.Resources">
             <summary>
@@ -326,543 +785,9 @@
              [rest of string was truncated]&quot;;.
              </summary>
         </member>
-        <member name="T:HL7Lib.Segments.RXO">
+        <member name="T:HL7Lib.Segments.ABS">
             <summary>
-            RXO Class: Constructs an HL7 RXO Segment Object
-            </summary>
-        </member>
-        <member name="T:HL7Lib.Segments.PEO">
-            <summary>
-            PEO Class: Constructs an HL7 PEO Segment Object
-            </summary>
-        </member>
-        <member name="T:HL7Lib.Segments.OM4">
-            <summary>
-            OM4 Class: Constructs an HL7 OM4 Segment Object
-            </summary>
-        </member>
-        <member name="T:HL7Lib.Segments.EQU">
-            <summary>
-            EQU Class: Constructs an HL7 EQU Segment Object
-            </summary>
-        </member>
-        <member name="T:HL7Lib.Segments.CTI">
-            <summary>
-            CTI Class: Constructs an HL7 CTI Segment Object
-            </summary>
-        </member>
-        <member name="T:HL7Lib.Segments.TQ2">
-            <summary>
-            TQ2 Class: Constructs an HL7 TQ2 Segment Object
-            </summary>
-        </member>
-        <member name="T:HL7Lib.Segments.QRI">
-            <summary>
-            QRI Class: Constructs an HL7 QRI Segment Object
-            </summary>
-        </member>
-        <member name="T:HL7Lib.Segments.OM3">
-            <summary>
-            OM3 Class: Constructs an HL7 OM3 Segment Object
-            </summary>
-        </member>
-        <member name="T:HL7Lib.Segments.MFA">
-            <summary>
-            MFA Class: Constructs an HL7 MFA Segment Object
-            </summary>
-        </member>
-        <member name="T:HL7Lib.Segments.LAN">
-            <summary>
-            LAN Class: Constructs an HL7 LAN Segment Object
-            </summary>
-        </member>
-        <member name="T:HL7Lib.Segments.GT1">
-            <summary>
-            GT1 Class: Constructs an HL7 GT1 Segment Object
-            </summary>
-        </member>
-        <member name="T:HL7Lib.Segments.FAC">
-            <summary>
-            FAC Class: Constructs an HL7 FAC Segment Object
-            </summary>
-        </member>
-        <member name="T:HL7Lib.Segments.CNS">
-            <summary>
-            CNS Class: Constructs an HL7 CNS Segment Object
-            </summary>
-        </member>
-        <member name="T:HL7Lib.Segments.AIP">
-            <summary>
-            AIP Class: Constructs an HL7 AIP Segment Object
-            </summary>
-        </member>
-        <member name="T:HL7Lib.Base.Component">
-            <summary>
-            Component Class: Constructs an HL7 Component Object
-            </summary>
-        </member>
-        <member name="M:HL7Lib.Base.Component.#ctor">
-            <summary>
-            Empty Constructor
-            </summary>
-        </member>
-        <member name="M:HL7Lib.Base.Component.#ctor(System.String)">
-            <summary>
-            Constructs a Component with the specified Name
-            </summary>
-            <param name="_Name">The Name of the Component to Construct</param>
-        </member>
-        <member name="M:HL7Lib.Base.Component.#ctor(System.String,System.String)">
-            <summary>
-            Constructs a Component with the specified Name and ID
-            </summary>
-            <param name="_Name">The Name of the Component to Construct</param>
-            <param name="_ID">The ID of the Component to Construct</param>
-        </member>
-        <member name="P:HL7Lib.Base.Component.Name">
-            <summary>
-            The Name of the Component
-            </summary>
-        </member>
-        <member name="P:HL7Lib.Base.Component.ID">
-            <summary>
-            The ID of the Component
-            </summary>
-        </member>
-        <member name="P:HL7Lib.Base.Component.Value">
-            <summary>
-            The Value of the Component
-            </summary>
-        </member>
-        <member name="P:HL7Lib.Base.Component.IDParts">
-            <summary>
-            The ComponentID Parts for the ID: Read Only
-            </summary>
-        </member>
-        <member name="T:HL7Lib.Segments.URD">
-            <summary>
-            URD Class: Constructs an HL7 URD Segment Object
-            </summary>
-        </member>
-        <member name="T:HL7Lib.Segments.UB2">
-            <summary>
-            UB2 Class: Constructs an HL7 UB2 Segment Object
-            </summary>
-        </member>
-        <member name="T:HL7Lib.Segments.TQ1">
-            <summary>
-            TQ1 Class: Constructs an HL7 TQ1 Segment Object
-            </summary>
-        </member>
-        <member name="T:HL7Lib.Segments.SCH">
-            <summary>
-            SCH Class: Constructs an HL7 SCH Segment Object
-            </summary>
-        </member>
-        <member name="T:HL7Lib.Segments.OM2">
-            <summary>
-            OM2 Class: Constructs an HL7 OM2 Segment Object
-            </summary>
-        </member>
-        <member name="T:HL7Lib.Segments.NK1">
-            <summary>
-            NK1 Class: Constructs an HL7 NK1 Segment Object
-            </summary>
-        </member>
-        <member name="T:HL7Lib.Segments.LDP">
-            <summary>
-            LDP Class: Constructs an HL7 LDP Segment Object
-            </summary>
-        </member>
-        <member name="T:HL7Lib.Segments.FT1">
-            <summary>
-            FT1 Class: Constructs an HL7 FT1 Segment Object
-            </summary>
-        </member>
-        <member name="T:HL7Lib.Base.ParseField">
-            <summary>
-            Parse Field Class: Used to store and manage Field information for parsing an HL7 message
-            </summary>
-        </member>
-        <member name="M:HL7Lib.Base.ParseField.#ctor(System.Int32,System.Int32,System.Boolean,System.Collections.Generic.List{HL7Lib.Base.ParseComponent})">
-            <summary>
-            ParseField Constructor: Creates a new ParseField object
-            </summary>
-            <param name="Index">The Index to set to this ParseField objects FieldIndex property</param>
-            <param name="Order">The Order to set to this ParseField objects FieldOrder property</param>
-            <param name="Repeated">The Repeated to set to this ParseField objects RepeatedField property</param>
-            <param name="Values">The Values to set to this ParseField objects FieldValues property</param>
-        </member>
-        <member name="M:HL7Lib.Base.ParseField.CompareTo(HL7Lib.Base.ParseField)">
-            <summary>
-            Sorts a list of objects in reverse FieldIndex order
-            </summary>
-            <param name="obj">The ParseField object to compare</param>
-            <returns>Returns a 1 if the first objects FieldIndex is greater than the second objects else it returns a 0</returns>
-        </member>
-        <member name="P:HL7Lib.Base.ParseField.FieldIndex">
-            <summary>
-            The FieldIndex of the Field from the HL7 message
-            </summary>
-        </member>
-        <member name="P:HL7Lib.Base.ParseField.FieldOrder">
-            <summary>
-            The FieldOrder used in inserting a repeating field into an HL7 segment
-            </summary>
-        </member>
-        <member name="P:HL7Lib.Base.ParseField.RepeatedField">
-            <summary>
-            The RepeatedField used to determine if a field is a repeating field
-            </summary>
-        </member>
-        <member name="P:HL7Lib.Base.ParseField.FieldValues">
-            <summary>
-            The FieldValues used to set the component values of this field
-            </summary>
-        </member>
-        <member name="T:HL7Lib.Segments.UB1">
-            <summary>
-            UB1 Class: Constructs an HL7 UB1 Segment Object
-            </summary>
-        </member>
-        <member name="T:HL7Lib.Segments.OM1">
-            <summary>
-            OM1 Class: Constructs an HL7 OM1 Segment Object
-            </summary>
-        </member>
-        <member name="T:HL7Lib.Segments.LRL">
-            <summary>
-            LRL Class: Constructs an HL7 LRL Segment Object
-            </summary>
-        </member>
-        <member name="T:HL7Lib.Segments.ECD">
-            <summary>
-            ECD Class: Constructs an HL7 ECD Segment Object
-            </summary>
-        </member>
-        <member name="T:HL7Lib.Segments.DB1">
-            <summary>
-            DB1 Class: Constructs an HL7 DB1 Segment Object
-            </summary>
-        </member>
-        <member name="T:HL7Lib.Segments.BTX">
-            <summary>
-            BTX Class: Constructs an HL7 BTX Segment Object
-            </summary>
-        </member>
-        <member name="T:HL7Lib.Segments.VAR">
-            <summary>
-            VAR Class: Constructs an HL7 VAR Segment Object
-            </summary>
-        </member>
-        <member name="T:HL7Lib.Segments.URS">
-            <summary>
-            URS Class: Constructs an HL7 URS Segment Object
-            </summary>
-        </member>
-        <member name="T:HL7Lib.Segments.STF">
-            <summary>
-            STF Class: Constructs an HL7 STF Segment Object
-            </summary>
-        </member>
-        <member name="T:HL7Lib.Segments.RQD">
-            <summary>
-            RQD Class: Constructs an HL7 RQD Segment Object
-            </summary>
-        </member>
-        <member name="T:HL7Lib.Segments.RQ1">
-            <summary>
-            RQ1 Class: Constructs an HL7 RQ1 Segment Object
-            </summary>
-        </member>
-        <member name="T:HL7Lib.Segments.QRF">
-            <summary>
-            QRF Class: Constructs an HL7 QRF Segment Object
-            </summary>
-        </member>
-        <member name="T:HL7Lib.Segments.QPD">
-            <summary>
-            QPD Class: Constructs an HL7 QPD Segment Object
-            </summary>
-        </member>
-        <member name="T:HL7Lib.Segments.PSH">
-            <summary>
-            PSH Class: Constructs an HL7 PSH Segment Object
-            </summary>
-        </member>
-        <member name="T:HL7Lib.Segments.NCK">
-            <summary>
-            NCK Class: Constructs an HL7 NCK Segment Object
-            </summary>
-        </member>
-        <member name="T:HL7Lib.Segments.FTS">
-            <summary>
-            FTS Class: Constructs an HL7 FTS Segment Object
-            </summary>
-        </member>
-        <member name="T:HL7Lib.Segments.ERR">
-            <summary>
-            ERR Class: Constructs an HL7 ERR Segment Object
-            </summary>
-        </member>
-        <member name="T:HL7Lib.Segments.EDU">
-            <summary>
-            EDU Class: Constructs an HL7 EDU Segment Object
-            </summary>
-        </member>
-        <member name="T:HL7Lib.Segments.DSC">
-            <summary>
-            DSC Class: Constructs an HL7 DSC Segment Object
-            </summary>
-        </member>
-        <member name="T:HL7Lib.Base.Field">
-            <summary>
-            Field Class: Constructs an HL7 Field Object
-            </summary>
-        </member>
-        <member name="M:HL7Lib.Base.Field.#ctor">
-            <summary>
-            Empty Constructor
-            </summary>
-        </member>
-        <member name="M:HL7Lib.Base.Field.#ctor(System.String)">
-            <summary>
-            Constructs a Field with the specified Name
-            </summary>
-            <param name="_Name">The Name of the Field to Construct</param>
-        </member>
-        <member name="M:HL7Lib.Base.Field.#ctor(System.String,System.Collections.Generic.List{HL7Lib.Base.Component})">
-            <summary>
-            Constructs a Field with the specified Name and Components List
-            </summary>
-            <param name="_Name">The Name of the Field to Construct</param>
-            <param name="_Components">The list of Components for the Field to Construct</param>
-        </member>
-        <member name="M:HL7Lib.Base.Field.SegName">
-            <summary>
-            Sets a static field for all Segment Name Fields
-            </summary>
-            <returns>Returns the segment name field</returns>
-        </member>
-        <member name="P:HL7Lib.Base.Field.Name">
-            <summary>
-            The Name of the Field
-            </summary>
-        </member>
-        <member name="P:HL7Lib.Base.Field.Components">
-            <summary>
-            The List of Components Associated with this Field
-            </summary>
-        </member>
-        <member name="T:HL7Lib.Segments.TCD">
-            <summary>
-            TCD Class: Constructs an HL7 TCD Segment Object
-            </summary>
-        </member>
-        <member name="T:HL7Lib.Segments.SPR">
-            <summary>
-            SPR Class: Constructs an HL7 SPR Segment Object
-            </summary>
-        </member>
-        <member name="T:HL7Lib.Segments.SAC">
-            <summary>
-            SAC Class: Constructs an HL7 SAC Segment Object
-            </summary>
-        </member>
-        <member name="T:HL7Lib.Segments.PTH">
-            <summary>
-            PTH Class: Constructs an HL7 PTH Segment Object
-            </summary>
-        </member>
-        <member name="T:HL7Lib.Segments.ORG">
-            <summary>
-            ORG Class: Constructs an HL7 ORG Segment Object
-            </summary>
-        </member>
-        <member name="T:HL7Lib.Segments.IAM">
-            <summary>
-            IAM Class: Constructs an HL7 IAM Segment Object
-            </summary>
-        </member>
-        <member name="T:HL7Lib.Segments.GOL">
-            <summary>
-            GOL Class: Constructs an HL7 GOL Segment Object
-            </summary>
-        </member>
-        <member name="T:HL7Lib.Segments.ERQ">
-            <summary>
-            ERQ Class: Constructs an HL7 ERQ Segment Object
-            </summary>
-        </member>
-        <member name="T:HL7Lib.Segments.EQP">
-            <summary>
-            EQP Class: Constructs an HL7 EQP Segment Object
-            </summary>
-        </member>
-        <member name="T:HL7Lib.Segments.CTD">
-            <summary>
-            CTD Class: Constructs an HL7 CTD Segment Object
-            </summary>
-        </member>
-        <member name="T:HL7Lib.Segments.AIL">
-            <summary>
-            AIL Class: Constructs an HL7 AIL Segment Object
-            </summary>
-        </member>
-        <member name="T:HL7Lib.Segments.TCC">
-            <summary>
-            TCC Class: Constructs an HL7 TCC Segment Object
-            </summary>
-        </member>
-        <member name="T:HL7Lib.Segments.RDF">
-            <summary>
-            RDF Class: Constructs an HL7 RDF Segment Object
-            </summary>
-        </member>
-        <member name="T:HL7Lib.Segments.QRD">
-            <summary>
-            QRD Class: Constructs an HL7 QRD Segment Object
-            </summary>
-        </member>
-        <member name="T:HL7Lib.Segments.OBX">
-            <summary>
-            OBX Class: Constructs an HL7 OBX Segment Object
-            </summary>
-        </member>
-        <member name="T:HL7Lib.Segments.ECR">
-            <summary>
-            ECR Class: Constructs an HL7 ECR Segment Object
-            </summary>
-        </member>
-        <member name="T:HL7Lib.Segments.CSS">
-            <summary>
-            CSS Class: Constructs an HL7 CSS Segment Object
-            </summary>
-        </member>
-        <member name="T:HL7Lib.Segments.APR">
-            <summary>
-            APR Class: Constructs an HL7 APR Segment Object
-            </summary>
-        </member>
-        <member name="T:HL7Lib.Segments.VTQ">
-            <summary>
-            VTQ Class: Constructs an HL7 VTQ Segment Object
-            </summary>
-        </member>
-        <member name="T:HL7Lib.Segments.PRD">
-            <summary>
-            PRD Class: Constructs an HL7 PRD Segment Object
-            </summary>
-        </member>
-        <member name="T:HL7Lib.Segments.PR1">
-            <summary>
-            PR1 Class: Constructs an HL7 PR1 Segment Object
-            </summary>
-        </member>
-        <member name="T:HL7Lib.Segments.NPU">
-            <summary>
-            NPU Class: Constructs an HL7 NPU Segment Object
-            </summary>
-        </member>
-        <member name="T:HL7Lib.Segments.MSH">
-            <summary>
-            MSH Class: Constructs an HL7 MSH Segment Object
-            </summary>
-        </member>
-        <member name="T:HL7Lib.Segments.MRG">
-            <summary>
-            MRG Class: Constructs an HL7 MRG Segment Object
-            </summary>
-        </member>
-        <member name="T:HL7Lib.Segments.CSR">
-            <summary>
-            CSR Class: Constructs an HL7 CSR Segment Object
-            </summary>
-        </member>
-        <member name="T:HL7Lib.Segments.CON">
-            <summary>
-            CON Class: Constructs an HL7 CON Segment Object
-            </summary>
-        </member>
-        <member name="T:HL7Lib.Base.Segments">
-            <summary>
-            Enum of supported segments
-            </summary>
-        </member>
-        <member name="T:HL7Lib.Base.Segment">
-            <summary>
-            Segment Class: Constructs an HL7 Segment Object
-            </summary>
-        </member>
-        <member name="M:HL7Lib.Base.Segment.#ctor">
-            <summary>
-            Empty Constructor
-            </summary>
-        </member>
-        <member name="M:HL7Lib.Base.Segment.#ctor(HL7Lib.Base.Segments)">
-            <summary>
-            Constructs an HL7 segment for the specified Segments enum object
-            </summary>
-            <param name="seg">The Segments enum object to construct for</param>
-        </member>
-        <member name="P:HL7Lib.Base.Segment.Name">
-            <summary>
-            The Name of the Segment
-            </summary>
-        </member>
-        <member name="P:HL7Lib.Base.Segment.Description">
-            <summary>
-            The Segment Description
-            </summary>
-        </member>
-        <member name="P:HL7Lib.Base.Segment.Fields">
-            <summary>
-            The Field List for the Segment
-            </summary>
-        </member>
-        <member name="T:HL7Lib.Segments.RXG">
-            <summary>
-            RXG Class: Constructs an HL7 RXG Segment Object
-            </summary>
-        </member>
-        <member name="T:HL7Lib.Segments.PRC">
-            <summary>
-            PRC Class: Constructs an HL7 PRC Segment Object
-            </summary>
-        </member>
-        <member name="T:HL7Lib.Segments.IN3">
-            <summary>
-            IN3 Class: Constructs an HL7 IN3 Segment Object
-            </summary>
-        </member>
-        <member name="T:HL7Lib.Segments.DSP">
-            <summary>
-            DSP Class: Constructs an HL7 DSP Segment Object
-            </summary>
-        </member>
-        <member name="T:HL7Lib.Segments.DG1">
-            <summary>
-            DG1 Class: Constructs an HL7 DG1 Segment Object
-            </summary>
-        </member>
-        <member name="T:HL7Lib.Segments.BTS">
-            <summary>
-            BTS Class: Constructs an HL7 BTS Segment Object
-            </summary>
-        </member>
-        <member name="T:HL7Lib.Segments.BPO">
-            <summary>
-            BPO Class: Constructs an HL7 BPO Segment Object
-            </summary>
-        </member>
-        <member name="T:HL7Lib.Segments.AFF">
-            <summary>
-            AFF Class: Constructs an HL7 AFF Segment Object
-            </summary>
-        </member>
-        <member name="T:HL7Lib.Segments.ADD">
-            <summary>
-            ADD Class: Constructs an HL7 ADD Segment Object
+            ABS Class: Constructs an HL7 ABS Segment Object
             </summary>
         </member>
         <member name="T:HL7Lib.Segments.ACC">
@@ -870,164 +795,14 @@
             ACC Class: Constructs an HL7 ACC Segment Object
             </summary>
         </member>
-        <member name="T:HL7Lib.Segments.ABS">
+        <member name="T:HL7Lib.Segments.ADD">
             <summary>
-            ABS Class: Constructs an HL7 ABS Segment Object
+            ADD Class: Constructs an HL7 ADD Segment Object
             </summary>
         </member>
-        <member name="T:HL7Lib.Base.Helper">
+        <member name="T:HL7Lib.Segments.AFF">
             <summary>
-            Helper Class: Used to setup helper objects
-            </summary>
-        </member>
-        <member name="M:HL7Lib.Base.Helper.RandomFirstName(System.String)">
-            <summary>
-            Sets a random first name for the PID segment, used to de-identify the HL7 message
-            </summary>
-            <param name="Sex">The sex in the PID segment</param>
-            <returns>Returns a randomly selected name from a list of names based on the sex of the patient</returns>
-        </member>
-        <member name="M:HL7Lib.Base.Helper.RandomLastName">
-            <summary>
-            Sets a random last name for the PID segment, used to de-identify the HL7 message.
-            </summary>
-            <returns>Returns a randomly selected name from a list of names</returns>
-        </member>
-        <member name="M:HL7Lib.Base.Helper.RandomAddress">
-            <summary>
-            Sets a random street address, used to de-identify the HL7 message.
-            </summary>
-            <returns>Returns a randomly selected street address</returns>
-        </member>
-        <member name="M:HL7Lib.Base.Helper.RandomMRN">
-            <summary>
-            Sets a random MRN for the patient, used to de-identify the HL7 message
-            </summary>
-            <returns>Returns a randomly selected MRN</returns>
-        </member>
-        <member name="M:HL7Lib.Base.Helper.CreateAck(HL7Lib.Base.Message)">
-            <summary>
-            Creates an ACK from the MSH segment of the associated message
-            </summary>
-            <param name="InboundMessage">The inbound message</param>
-            <returns>The ack</returns>
-        </member>
-        <member name="M:HL7Lib.Base.Helper.ValidateAck(HL7Lib.Base.Message,HL7Lib.Base.Message)">
-            <summary>
-            Validates the ack against the message
-            </summary>
-            <param name="OutboundMessage">The message to use</param>
-            <param name="AckMessage">The ack to use</param>
-            <returns></returns>
-        </member>
-        <member name="T:HL7Lib.Segments.PRB">
-            <summary>
-            PRB Class: Constructs an HL7 PRB Segment Object
-            </summary>
-        </member>
-        <member name="T:HL7Lib.Segments.ORC">
-            <summary>
-            ORC Class: Constructs an HL7 ORC Segment Object
-            </summary>
-        </member>
-        <member name="T:HL7Lib.Segments.LOC">
-            <summary>
-            LOC Class: Constructs an HL7 LOC Segment Object
-            </summary>
-        </member>
-        <member name="T:HL7Lib.Segments.LCH">
-            <summary>
-            LCH Class: Constructs an HL7 LCH Segment Object
-            </summary>
-        </member>
-        <member name="T:HL7Lib.Segments.INV">
-            <summary>
-            INV Class: Constructs an HL7 INV Segment Object
-            </summary>
-        </member>
-        <member name="T:HL7Lib.Segments.IN2">
-            <summary>
-            IN2 Class: Constructs an HL7 IN2 Segment Object
-            </summary>
-        </member>
-        <member name="T:HL7Lib.Segments.FHS">
-            <summary>
-            FHS Class: Constructs an HL7 FHS Segment Object
-            </summary>
-        </member>
-        <member name="T:HL7Lib.Segments.EQL">
-            <summary>
-            EQL Class: Constructs an HL7 EQL Segment Object
-            </summary>
-        </member>
-        <member name="T:HL7Lib.Segments.CSP">
-            <summary>
-            CSP Class: Constructs an HL7 CSP Segment Object
-            </summary>
-        </member>
-        <member name="T:HL7Lib.Segments.AUT">
-            <summary>
-            AUT Class: Constructs an HL7 AUT Segment Object
-            </summary>
-        </member>
-        <member name="T:HL7Lib.Segments.ARQ">
-            <summary>
-            ARQ Class: Constructs an HL7 ARQ Segment Object
-            </summary>
-        </member>
-        <member name="T:HL7Lib.Segments.SPM">
-            <summary>
-            SPM Class: Constructs an HL7 SPM Segment Object
-            </summary>
-        </member>
-        <member name="T:HL7Lib.Segments.SFT">
-            <summary>
-            SFT Class: Constructs an HL7 SFT Segment Object
-            </summary>
-        </member>
-        <member name="T:HL7Lib.Segments.RXE">
-            <summary>
-            RXE Class: Constructs an HL7 RXE Segment Object
-            </summary>
-        </member>
-        <member name="T:HL7Lib.Segments.RF1">
-            <summary>
-            RF1 Class: Constructs an HL7 RF1 Segment Object
-            </summary>
-        </member>
-        <member name="T:HL7Lib.Segments.PV2">
-            <summary>
-            PV2 Class: Constructs an HL7 PV2 Segment Object
-            </summary>
-        </member>
-        <member name="T:HL7Lib.Segments.PRA">
-            <summary>
-            PRA Class: Constructs an HL7 PRA Segment Object
-            </summary>
-        </member>
-        <member name="T:HL7Lib.Segments.PD1">
-            <summary>
-            PD1 Class: Constructs an HL7 PD1 Segment Object
-            </summary>
-        </member>
-        <member name="T:HL7Lib.Segments.NTE">
-            <summary>
-            NTE Class: Constructs an HL7 NTE Segment Object
-            </summary>
-        </member>
-        <member name="T:HL7Lib.Segments.MFI">
-            <summary>
-            MFI Class: Constructs an HL7 MFI Segment Object
-            </summary>
-        </member>
-        <member name="T:HL7Lib.Segments.IN1">
-            <summary>
-            IN1 Class: Constructs an HL7 IN1 Segment Object
-            </summary>
-        </member>
-        <member name="T:HL7Lib.Segments.CER">
-            <summary>
-            CER Class: Constructs an HL7 CER Segment Object
+            AFF Class: Constructs an HL7 AFF Segment Object
             </summary>
         </member>
         <member name="T:HL7Lib.Segments.AIG">
@@ -1035,346 +810,14 @@
             AIG Class: Constructs an HL7 AIG Segment Object
             </summary>
         </member>
-        <member name="T:HL7Lib.Segments.RXD">
+        <member name="T:HL7Lib.Segments.AIL">
             <summary>
-            RXD Class: Constructs an HL7 RXD Segment Object
+            AIL Class: Constructs an HL7 AIL Segment Object
             </summary>
         </member>
-        <member name="T:HL7Lib.Segments.ROL">
+        <member name="T:HL7Lib.Segments.AIP">
             <summary>
-            ROL Class: Constructs an HL7 ROL Segment Object
-            </summary>
-        </member>
-        <member name="T:HL7Lib.Segments.PV1">
-            <summary>
-            PV1 Class: Constructs an HL7 PV1 Segment Object
-            </summary>
-        </member>
-        <member name="T:HL7Lib.Segments.PDC">
-            <summary>
-            PDC Class: Constructs an HL7 PDC Segment Object
-            </summary>
-        </member>
-        <member name="T:HL7Lib.Segments.NST">
-            <summary>
-            NST Class: Constructs an HL7 NST Segment Object
-            </summary>
-        </member>
-        <member name="T:HL7Lib.Segments.NSC">
-            <summary>
-            NSC Class: Constructs an HL7 NSC Segment Object
-            </summary>
-        </member>
-        <member name="T:HL7Lib.Base.Extensions">
-            <summary>
-            Extension Methods
-            </summary>
-        </member>
-        <member name="M:HL7Lib.Base.Extensions.Get(System.Collections.Generic.List{HL7Lib.Base.Segment},System.String)">
-            <summary>
-            Pulls a specified segment from a list of segments by name.
-            </summary>
-            <param name="s">The list of segments to search.</param>
-            <param name="SegmentName">The segment name to pull.</param>
-            <returns>Returns the specified segment if it exists, else returns null.</returns>
-        </member>
-        <member name="M:HL7Lib.Base.Extensions.Get(System.Collections.Generic.List{HL7Lib.Base.Field},System.String)">
-            <summary>
-            Pulls a specified Field from a list of Fields by Name
-            </summary>
-            <param name="fList">The list of fields to search</param>
-            <param name="FieldName">The field name to pull</param>
-            <returns>Returns the specified field if it exists, else returns null.</returns>
-        </member>
-        <member name="M:HL7Lib.Base.Extensions.Get(System.Collections.Generic.List{HL7Lib.Base.Component},System.String)">
-            <summary>
-            Pulls a specified Component from a list of Components by Name
-            </summary>
-            <param name="cList">The list of components to search</param>
-            <param name="ComponentName">The component name to pull</param>
-            <returns>Returns the specified component if it exists, else returns null</returns>
-        </member>
-        <member name="M:HL7Lib.Base.Extensions.GetByID(System.Collections.Generic.List{HL7Lib.Base.Component},System.String)">
-            <summary>
-            Pulls a specified Component from a list of Components byID
-            </summary>
-            <param name="cList">The list of components to search</param>
-            <param name="ComponentID">The component ID to pull</param>
-            <returns>Returns the specified component if it exists, else returns null</returns>
-        </member>
-        <member name="M:HL7Lib.Base.Extensions.GetByID(HL7Lib.Base.Segment,System.String)">
-            <summary>
-            Gets the specified component from a segment by the component ID
-            </summary>
-            <param name="s">The segment</param>
-            <param name="ComponentID">The component ID</param>
-            <returns>Returns the specified component if it exists, else returns null</returns>
-        </member>
-        <member name="M:HL7Lib.Base.Extensions.ConvertID(System.String)">
-            <summary>
-            Takes a standard Component ID and converts it to a ComponentID object
-            </summary>
-            <param name="ComID">The Component ID string to convert</param>
-            <returns></returns>
-        </member>
-        <member name="M:HL7Lib.Base.Extensions.GetByID(HL7Lib.Base.Message,System.String)">
-            <summary>
-            Gets a list of components from a single message by ID
-            </summary>
-            <param name="m">The message to search</param>
-            <param name="ID">The ID of the component to pull</param>
-            <returns>Returns the list of components</returns>
-        </member>
-        <member name="M:HL7Lib.Base.Extensions.GetByID(System.Collections.Generic.List{HL7Lib.Base.Message},System.String)">
-            <summary>
-            Pulls a list of components from a list of messages based on the ID passed in
-            </summary>
-            <param name="msgs">The messages to pull from</param>
-            <param name="ID">The component ID to pull</param>
-            <returns>A list of components matching the ID passed in</returns>
-        </member>
-        <member name="M:HL7Lib.Base.Extensions.GetByID(HL7Lib.Base.Message,System.String,System.String)">
-            <summary>
-            Gets a single component from a single message by ID and with the specified value
-            </summary>
-            <param name="m">The message to search</param>
-            <param name="ID">The ID of the component to pull</param>
-            <param name="ValueString">The value of the component to search for</param>
-            <returns>The component returned</returns>
-        </member>
-        <member name="M:HL7Lib.Base.Extensions.DeIdentify(HL7Lib.Base.Message)">
-            <summary>
-            Removes patient identifying information from message and replaces it with made up patient data.
-            </summary>
-            <param name="m">The message to de-identify.</param>
-            <returns>Returns the original message without identifying information.</returns>
-        </member>
-        <member name="M:HL7Lib.Base.Extensions.ToHL7Date(System.DateTime)">
-            <summary>
-            Converts a regular date into an HL7 date string.
-            </summary>
-            <param name="d">The date to convert.</param>
-            <returns>Returns the HL7 date string.</returns>
-        </member>
-        <member name="M:HL7Lib.Base.Extensions.FromHL7Date(System.String)">
-            <summary>
-            Converts an HL7 date string into a .Net date.
-            </summary>
-            <param name="HL7Date">The HL7 date string to convert.</param>
-            <returns>Returns the date after conversion.</returns>
-        </member>
-        <member name="M:HL7Lib.Base.Extensions.GetIndex(System.Collections.Generic.List{HL7Lib.Base.Field},HL7Lib.Base.Field)">
-            <summary>
-            Gets the index of the specified field within the field list
-            </summary>
-            <param name="fList">The field list to pull</param>
-            <param name="f">The field to get the index for</param>
-            <returns>Returns the index of the specified field</returns>
-        </member>
-        <member name="M:HL7Lib.Base.Extensions.GetIndex(System.Collections.Generic.List{HL7Lib.Base.Component},HL7Lib.Base.Component)">
-            <summary>
-            Gets the index of the specified component within the component list
-            </summary>
-            <param name="cList">The component list to pull</param>
-            <param name="c">The component to get the index for</param>
-            <returns>Returns the index of the specified component</returns>
-        </member>
-        <member name="M:HL7Lib.Base.Extensions.UnEscape(System.String,System.String)">
-            <summary>
-            Unescapes escape sequences in the HL7 segment
-            </summary>
-            <param name="msg">The string to unescape</param>
-            <param name="EscapeCharacter">The escape character being used</param>
-            <returns>The unescaped string</returns>
-        </member>
-        <member name="T:HL7Lib.Segments.TXA">
-            <summary>
-            TXA Class: Constructs an HL7 TXA Segment Object
-            </summary>
-        </member>
-        <member name="T:HL7Lib.Segments.SID">
-            <summary>
-            SID Class: Constructs an HL7 SID Segment Object
-            </summary>
-        </member>
-        <member name="T:HL7Lib.Segments.RXC">
-            <summary>
-            RXC Class: Constructs an HL7 RXC Segment Object
-            </summary>
-        </member>
-        <member name="T:HL7Lib.Segments.RMI">
-            <summary>
-            RMI Class: Constructs an HL7 RMI Segment Object
-            </summary>
-        </member>
-        <member name="T:HL7Lib.Segments.RCP">
-            <summary>
-            RCP Class: Constructs an HL7 RCP Segment Object
-            </summary>
-        </member>
-        <member name="T:HL7Lib.Segments.PCR">
-            <summary>
-            PCR Class: Constructs an HL7 PCR Segment Object
-            </summary>
-        </member>
-        <member name="T:HL7Lib.Segments.ODT">
-            <summary>
-            ODT Class: Constructs an HL7 ODT Segment Object
-            </summary>
-        </member>
-        <member name="T:HL7Lib.Segments.OBR">
-            <summary>
-            OBR Class: Constructs an HL7 OBR Segment Object
-            </summary>
-        </member>
-        <member name="T:HL7Lib.Segments.EVN">
-            <summary>
-            EVN Class: Constructs an HL7 EVN Segment Object
-            </summary>
-        </member>
-        <member name="T:HL7Lib.Segments.BLG">
-            <summary>
-            BLG Class: Constructs an HL7 BLG Segment Object
-            </summary>
-        </member>
-        <member name="T:HL7Lib.Segments.RGS">
-            <summary>
-            RGS Class: Constructs an HL7 RGS Segment Object
-            </summary>
-        </member>
-        <member name="T:HL7Lib.Segments.PES">
-            <summary>
-            PES Class: Constructs an HL7 PES Segment Object
-            </summary>
-        </member>
-        <member name="T:HL7Lib.Segments.PDA">
-            <summary>
-            PDA Class: Constructs an HL7 PDA Segment Object
-            </summary>
-        </member>
-        <member name="T:HL7Lib.Segments.ODS">
-            <summary>
-            ODS Class: Constructs an HL7 ODS Segment Object
-            </summary>
-        </member>
-        <member name="T:HL7Lib.Segments.IPC">
-            <summary>
-            IPC Class: Constructs an HL7 IPC Segment Object
-            </summary>
-        </member>
-        <member name="T:HL7Lib.Segments.IIM">
-            <summary>
-            IIM Class: Constructs an HL7 IIM Segment Object
-            </summary>
-        </member>
-        <member name="T:HL7Lib.Segments.GP2">
-            <summary>
-            GP2 Class: Constructs an HL7 GP2 Segment Object
-            </summary>
-        </member>
-        <member name="T:HL7Lib.Segments.BHS">
-            <summary>
-            BHS Class: Constructs an HL7 BHS Segment Object
-            </summary>
-        </member>
-        <member name="T:HL7Lib.Base.ComponentID">
-            <summary>
-            ComponentID Class: Creates a ComponentID object
-            </summary>
-        </member>
-        <member name="P:HL7Lib.Base.ComponentID.SegmentName">
-            <summary>
-            The SegmentName of the Component ID string
-            </summary>
-        </member>
-        <member name="P:HL7Lib.Base.ComponentID.FieldIndex">
-            <summary>
-            The FieldIndex of the Component ID string
-            </summary>
-        </member>
-        <member name="P:HL7Lib.Base.ComponentID.ComponentIndex">
-            <summary>
-            The ComponentIndex of the Component ID string
-            </summary>
-        </member>
-        <member name="T:HL7Lib.Segments.RXR">
-            <summary>
-            RXR Class: Constructs an HL7 RXR Segment Object
-            </summary>
-        </member>
-        <member name="T:HL7Lib.Segments.RXA">
-            <summary>
-            RXA Class: Constructs an HL7 RXA Segment Object
-            </summary>
-        </member>
-        <member name="T:HL7Lib.Segments.QID">
-            <summary>
-            QID Class: Constructs an HL7 QID Segment Object
-            </summary>
-        </member>
-        <member name="T:HL7Lib.Segments.OM7">
-            <summary>
-            OM7 Class: Constructs an HL7 OM7 Segment Object
-            </summary>
-        </member>
-        <member name="T:HL7Lib.Segments.NDS">
-            <summary>
-            NDS Class: Constructs an HL7 NDS Segment Object
-            </summary>
-        </member>
-        <member name="T:HL7Lib.Segments.MSA">
-            <summary>
-            MSA Class: Constructs an HL7 MSA Segment Object
-            </summary>
-        </member>
-        <member name="T:HL7Lib.Segments.MFE">
-            <summary>
-            MFE Class: Constructs an HL7 MFE Segment Object
-            </summary>
-        </member>
-        <member name="T:HL7Lib.Segments.LCC">
-            <summary>
-            LCC Class: Constructs an HL7 LCC Segment Object
-            </summary>
-        </member>
-        <member name="T:HL7Lib.Segments.GP1">
-            <summary>
-            GP1 Class: Constructs an HL7 GP1 Segment Object
-            </summary>
-        </member>
-        <member name="T:HL7Lib.Segments.CM2">
-            <summary>
-            CM2 Class: Constructs an HL7 CM2 Segment Object
-            </summary>
-        </member>
-        <member name="T:HL7Lib.Segments.CDM">
-            <summary>
-            CDM Class: Constructs an HL7 CDM Segment Object
-            </summary>
-        </member>
-        <member name="T:HL7Lib.Segments.PID">
-            <summary>
-            PID Class: Constructs an HL7 PID Segment Object
-            </summary>
-        </member>
-        <member name="T:HL7Lib.Segments.OVR">
-            <summary>
-            OVR Class: Constructs an HL7 OVR Segment Object
-            </summary>
-        </member>
-        <member name="T:HL7Lib.Segments.OM6">
-            <summary>
-            OM6 Class: Constructs an HL7 OM6 Segment Object
-            </summary>
-        </member>
-        <member name="T:HL7Lib.Segments.ISD">
-            <summary>
-            ISD Class: Constructs an HL7 ISD Segment Object
-            </summary>
-        </member>
-        <member name="T:HL7Lib.Segments.CM1">
-            <summary>
-            CM1 Class: Constructs an HL7 CM1 Segment Object
+            AIP Class: Constructs an HL7 AIP Segment Object
             </summary>
         </member>
         <member name="T:HL7Lib.Segments.AIS">
@@ -1382,146 +825,709 @@
             AIS Class: Constructs an HL7 AIS Segment Object
             </summary>
         </member>
-        <member name="T:HL7Lib.Base.ParseComponent">
+        <member name="T:HL7Lib.Segments.AL1">
             <summary>
-            ParseComponent Class: Creates a Component value object
+            AL1 Class: Constructs an HL7 AL1 Segment Object
             </summary>
         </member>
-        <member name="M:HL7Lib.Base.ParseComponent.#ctor(System.Int32,System.String)">
+        <member name="T:HL7Lib.Segments.APR">
             <summary>
-            ParseComponent Constructor: Constructs a ParseComponent object
-            </summary>
-            <param name="Index">The Index of this instance of the ParseComponent</param>
-            <param name="Value">The Value of this instance of the ParseComponent</param>
-        </member>
-        <member name="P:HL7Lib.Base.ParseComponent.ComponentIndex">
-            <summary>
-            The ComponentIndex of this component value object
+            APR Class: Constructs an HL7 APR Segment Object
             </summary>
         </member>
-        <member name="P:HL7Lib.Base.ParseComponent.ComponentValue">
+        <member name="T:HL7Lib.Segments.ARQ">
             <summary>
-            The ComponentValue of this component value object
+            ARQ Class: Constructs an HL7 ARQ Segment Object
             </summary>
         </member>
-        <member name="T:HL7Lib.Base.Message">
+        <member name="T:HL7Lib.Segments.AUT">
             <summary>
-            Message Class: Constructs an HL7 message object from a string
+            AUT Class: Constructs an HL7 AUT Segment Object
             </summary>
         </member>
-        <member name="M:HL7Lib.Base.Message.#ctor">
+        <member name="T:HL7Lib.Segments.BHS">
             <summary>
-            Empty Constructor
+            BHS Class: Constructs an HL7 BHS Segment Object
             </summary>
         </member>
-        <member name="M:HL7Lib.Base.Message.#ctor(System.String)">
+        <member name="T:HL7Lib.Segments.BLC">
             <summary>
-            Constructs an HL7 message from an HL7 message string
-            </summary>
-            <param name="HL7Message">The HL7 message string</param>
-        </member>
-        <member name="M:HL7Lib.Base.Message.Parse(System.String)">
-            <summary>
-            Parses the HL7 message string and creates a list of segments from it
-            </summary>
-            <param name="HL7Message">The HL7 message string</param>
-        </member>
-        <member name="M:HL7Lib.Base.Message.SetFields(System.String,System.String)">
-            <summary>
-            Sets the Fields of a single segment
-            </summary>
-            <param name="seg">The Segment string</param>
-            <param name="SegmentName">The Segment name</param>
-        </member>
-        <member name="M:HL7Lib.Base.Message.SetSegment(System.String,System.Collections.Generic.List{HL7Lib.Base.ParseField})">
-            <summary>
-            Calls one of the Parse HL7 Segment Methods based on the Segment Name
-            </summary>
-            <param name="SegmentName">The Segment Name to Parse</param>
-            <param name="l">The List of objects</param>
-        </member>
-        <member name="M:HL7Lib.Base.Message.SetSegName(System.String)">
-            <summary>
-            Sets the segment name of the specified segment
-            </summary>
-            <param name="seg">The segment to parse</param>
-            <returns>The segment name</returns>
-        </member>
-        <member name="M:HL7Lib.Base.Message.ParseCustom(System.Collections.Generic.List{HL7Lib.Base.ParseField},System.String)">
-            <summary>
-            Parses a custom (Z) segment from the message string
-            </summary>
-            <param name="HL7Segment">The fields and components from the custom segment string</param>
-            <param name="SegName">The segment name to use</param>
-            <returns>Returns a custom segment after processing</returns>
-        </member>
-        <member name="M:HL7Lib.Base.Message.ParseStandard(System.Collections.Generic.List{HL7Lib.Base.ParseField},HL7Lib.Base.Segments)">
-            <summary>
-            Parses a standard segment, this is the main processing method for most segments
-            </summary>
-            <param name="HL7Segment">The fields and components from the standard segment string</param>
-            <param name="seg">The Segments enum object to use for this segment</param>
-            <returns>Returns a standard segment after processing</returns>
-        </member>
-        <member name="M:HL7Lib.Base.Message.ParseMSH(System.Collections.Generic.List{HL7Lib.Base.ParseField})">
-            <summary>
-            Parses an MSH segment from the message string
-            </summary>
-            <param name="HL7Segment">The fields and components from the MSH segment string</param>
-            <returns>Returns an MSH segment after processing</returns>
-        </member>
-        <member name="M:HL7Lib.Base.Message.AddStandard(System.Collections.Generic.List{HL7Lib.Base.ParseField},HL7Lib.Base.Segment)">
-            <summary>
-            Adds a standard field and component to the specified segment
-            </summary>
-            <param name="standardFields">The standard field and components for the specified segment</param>
-            <param name="s">The segment to add to</param>
-        </member>
-        <member name="M:HL7Lib.Base.Message.AddRepeated(System.Collections.Generic.List{HL7Lib.Base.ParseField},HL7Lib.Base.Segment)">
-            <summary>
-            Adds a repeated field and component to the specified segment
-            </summary>
-            <param name="repeatedFields">The repeated field and components for the specified segment</param>
-            <param name="s">The segment to add to</param>
-        </member>
-        <member name="P:HL7Lib.Base.Message.FieldSeperator">
-            <summary>
-            HL7 Message Field Seperator String
+            BLC Class: Constructs an HL7 BLC Segment Object
             </summary>
         </member>
-        <member name="P:HL7Lib.Base.Message.ComponentSeperator">
+        <member name="T:HL7Lib.Segments.BLG">
             <summary>
-            HL7 Message Component Seperator String
+            BLG Class: Constructs an HL7 BLG Segment Object
             </summary>
         </member>
-        <member name="P:HL7Lib.Base.Message.SubComponentSeperator">
+        <member name="T:HL7Lib.Segments.BPO">
             <summary>
-            HL7 Message SubComponent Seperator String
+            BPO Class: Constructs an HL7 BPO Segment Object
             </summary>
         </member>
-        <member name="P:HL7Lib.Base.Message.FieldRepeatSeperator">
+        <member name="T:HL7Lib.Segments.BPX">
             <summary>
-            HL7 Message Repeating Field Seperator String
+            BPX Class: Constructs an HL7 BPX Segment Object
             </summary>
         </member>
-        <member name="P:HL7Lib.Base.Message.EscapeCharacter">
+        <member name="T:HL7Lib.Segments.BTS">
             <summary>
-            HL7 Message Escape Character Seperator String
+            BTS Class: Constructs an HL7 BTS Segment Object
             </summary>
         </member>
-        <member name="P:HL7Lib.Base.Message.Segments">
+        <member name="T:HL7Lib.Segments.BTX">
             <summary>
-            List of Segments in the HL7 message
+            BTX Class: Constructs an HL7 BTX Segment Object
             </summary>
         </member>
-        <member name="P:HL7Lib.Base.Message.SegmentNames">
+        <member name="T:HL7Lib.Segments.CDM">
             <summary>
-            List of Segment names in HL7 message
+            CDM Class: Constructs an HL7 CDM Segment Object
             </summary>
         </member>
-        <member name="P:HL7Lib.Base.Message.DisplayString">
+        <member name="T:HL7Lib.Segments.CER">
             <summary>
-            The HL7 message string formatted for display
+            CER Class: Constructs an HL7 CER Segment Object
+            </summary>
+        </member>
+        <member name="T:HL7Lib.Segments.CM0">
+            <summary>
+            CM0 Class: Constructs an HL7 CM0 Segment Object
+            </summary>
+        </member>
+        <member name="T:HL7Lib.Segments.CM1">
+            <summary>
+            CM1 Class: Constructs an HL7 CM1 Segment Object
+            </summary>
+        </member>
+        <member name="T:HL7Lib.Segments.CM2">
+            <summary>
+            CM2 Class: Constructs an HL7 CM2 Segment Object
+            </summary>
+        </member>
+        <member name="T:HL7Lib.Segments.CNS">
+            <summary>
+            CNS Class: Constructs an HL7 CNS Segment Object
+            </summary>
+        </member>
+        <member name="T:HL7Lib.Segments.CON">
+            <summary>
+            CON Class: Constructs an HL7 CON Segment Object
+            </summary>
+        </member>
+        <member name="T:HL7Lib.Segments.CSP">
+            <summary>
+            CSP Class: Constructs an HL7 CSP Segment Object
+            </summary>
+        </member>
+        <member name="T:HL7Lib.Segments.CSR">
+            <summary>
+            CSR Class: Constructs an HL7 CSR Segment Object
+            </summary>
+        </member>
+        <member name="T:HL7Lib.Segments.CSS">
+            <summary>
+            CSS Class: Constructs an HL7 CSS Segment Object
+            </summary>
+        </member>
+        <member name="T:HL7Lib.Segments.CTD">
+            <summary>
+            CTD Class: Constructs an HL7 CTD Segment Object
+            </summary>
+        </member>
+        <member name="T:HL7Lib.Segments.CTI">
+            <summary>
+            CTI Class: Constructs an HL7 CTI Segment Object
+            </summary>
+        </member>
+        <member name="T:HL7Lib.Segments.DB1">
+            <summary>
+            DB1 Class: Constructs an HL7 DB1 Segment Object
+            </summary>
+        </member>
+        <member name="T:HL7Lib.Segments.DG1">
+            <summary>
+            DG1 Class: Constructs an HL7 DG1 Segment Object
+            </summary>
+        </member>
+        <member name="T:HL7Lib.Segments.DRG">
+            <summary>
+            DRG Class: Constructs an HL7 DRG Segment Object
+            </summary>
+        </member>
+        <member name="T:HL7Lib.Segments.DSC">
+            <summary>
+            DSC Class: Constructs an HL7 DSC Segment Object
+            </summary>
+        </member>
+        <member name="T:HL7Lib.Segments.DSP">
+            <summary>
+            DSP Class: Constructs an HL7 DSP Segment Object
+            </summary>
+        </member>
+        <member name="T:HL7Lib.Segments.ECD">
+            <summary>
+            ECD Class: Constructs an HL7 ECD Segment Object
+            </summary>
+        </member>
+        <member name="T:HL7Lib.Segments.ECR">
+            <summary>
+            ECR Class: Constructs an HL7 ECR Segment Object
+            </summary>
+        </member>
+        <member name="T:HL7Lib.Segments.EDU">
+            <summary>
+            EDU Class: Constructs an HL7 EDU Segment Object
+            </summary>
+        </member>
+        <member name="T:HL7Lib.Segments.EQL">
+            <summary>
+            EQL Class: Constructs an HL7 EQL Segment Object
+            </summary>
+        </member>
+        <member name="T:HL7Lib.Segments.EQP">
+            <summary>
+            EQP Class: Constructs an HL7 EQP Segment Object
+            </summary>
+        </member>
+        <member name="T:HL7Lib.Segments.EQU">
+            <summary>
+            EQU Class: Constructs an HL7 EQU Segment Object
+            </summary>
+        </member>
+        <member name="T:HL7Lib.Segments.ERQ">
+            <summary>
+            ERQ Class: Constructs an HL7 ERQ Segment Object
+            </summary>
+        </member>
+        <member name="T:HL7Lib.Segments.ERR">
+            <summary>
+            ERR Class: Constructs an HL7 ERR Segment Object
+            </summary>
+        </member>
+        <member name="T:HL7Lib.Segments.EVN">
+            <summary>
+            EVN Class: Constructs an HL7 EVN Segment Object
+            </summary>
+        </member>
+        <member name="T:HL7Lib.Segments.FAC">
+            <summary>
+            FAC Class: Constructs an HL7 FAC Segment Object
+            </summary>
+        </member>
+        <member name="T:HL7Lib.Segments.FHS">
+            <summary>
+            FHS Class: Constructs an HL7 FHS Segment Object
+            </summary>
+        </member>
+        <member name="T:HL7Lib.Segments.FT1">
+            <summary>
+            FT1 Class: Constructs an HL7 FT1 Segment Object
+            </summary>
+        </member>
+        <member name="T:HL7Lib.Segments.FTS">
+            <summary>
+            FTS Class: Constructs an HL7 FTS Segment Object
+            </summary>
+        </member>
+        <member name="T:HL7Lib.Segments.GOL">
+            <summary>
+            GOL Class: Constructs an HL7 GOL Segment Object
+            </summary>
+        </member>
+        <member name="T:HL7Lib.Segments.GP1">
+            <summary>
+            GP1 Class: Constructs an HL7 GP1 Segment Object
+            </summary>
+        </member>
+        <member name="T:HL7Lib.Segments.GP2">
+            <summary>
+            GP2 Class: Constructs an HL7 GP2 Segment Object
+            </summary>
+        </member>
+        <member name="T:HL7Lib.Segments.GT1">
+            <summary>
+            GT1 Class: Constructs an HL7 GT1 Segment Object
+            </summary>
+        </member>
+        <member name="T:HL7Lib.Segments.IAM">
+            <summary>
+            IAM Class: Constructs an HL7 IAM Segment Object
+            </summary>
+        </member>
+        <member name="T:HL7Lib.Segments.IIM">
+            <summary>
+            IIM Class: Constructs an HL7 IIM Segment Object
+            </summary>
+        </member>
+        <member name="T:HL7Lib.Segments.IN1">
+            <summary>
+            IN1 Class: Constructs an HL7 IN1 Segment Object
+            </summary>
+        </member>
+        <member name="T:HL7Lib.Segments.IN2">
+            <summary>
+            IN2 Class: Constructs an HL7 IN2 Segment Object
+            </summary>
+        </member>
+        <member name="T:HL7Lib.Segments.IN3">
+            <summary>
+            IN3 Class: Constructs an HL7 IN3 Segment Object
+            </summary>
+        </member>
+        <member name="T:HL7Lib.Segments.INV">
+            <summary>
+            INV Class: Constructs an HL7 INV Segment Object
+            </summary>
+        </member>
+        <member name="T:HL7Lib.Segments.IPC">
+            <summary>
+            IPC Class: Constructs an HL7 IPC Segment Object
+            </summary>
+        </member>
+        <member name="T:HL7Lib.Segments.ISD">
+            <summary>
+            ISD Class: Constructs an HL7 ISD Segment Object
+            </summary>
+        </member>
+        <member name="T:HL7Lib.Segments.LAN">
+            <summary>
+            LAN Class: Constructs an HL7 LAN Segment Object
+            </summary>
+        </member>
+        <member name="T:HL7Lib.Segments.LCC">
+            <summary>
+            LCC Class: Constructs an HL7 LCC Segment Object
+            </summary>
+        </member>
+        <member name="T:HL7Lib.Segments.LCH">
+            <summary>
+            LCH Class: Constructs an HL7 LCH Segment Object
+            </summary>
+        </member>
+        <member name="T:HL7Lib.Segments.LDP">
+            <summary>
+            LDP Class: Constructs an HL7 LDP Segment Object
+            </summary>
+        </member>
+        <member name="T:HL7Lib.Segments.LOC">
+            <summary>
+            LOC Class: Constructs an HL7 LOC Segment Object
+            </summary>
+        </member>
+        <member name="T:HL7Lib.Segments.LRL">
+            <summary>
+            LRL Class: Constructs an HL7 LRL Segment Object
+            </summary>
+        </member>
+        <member name="T:HL7Lib.Segments.MFA">
+            <summary>
+            MFA Class: Constructs an HL7 MFA Segment Object
+            </summary>
+        </member>
+        <member name="T:HL7Lib.Segments.MFE">
+            <summary>
+            MFE Class: Constructs an HL7 MFE Segment Object
+            </summary>
+        </member>
+        <member name="T:HL7Lib.Segments.MFI">
+            <summary>
+            MFI Class: Constructs an HL7 MFI Segment Object
+            </summary>
+        </member>
+        <member name="T:HL7Lib.Segments.MRG">
+            <summary>
+            MRG Class: Constructs an HL7 MRG Segment Object
+            </summary>
+        </member>
+        <member name="T:HL7Lib.Segments.MSA">
+            <summary>
+            MSA Class: Constructs an HL7 MSA Segment Object
+            </summary>
+        </member>
+        <member name="T:HL7Lib.Segments.MSH">
+            <summary>
+            MSH Class: Constructs an HL7 MSH Segment Object
+            </summary>
+        </member>
+        <member name="T:HL7Lib.Segments.NCK">
+            <summary>
+            NCK Class: Constructs an HL7 NCK Segment Object
+            </summary>
+        </member>
+        <member name="T:HL7Lib.Segments.NDS">
+            <summary>
+            NDS Class: Constructs an HL7 NDS Segment Object
+            </summary>
+        </member>
+        <member name="T:HL7Lib.Segments.NK1">
+            <summary>
+            NK1 Class: Constructs an HL7 NK1 Segment Object
+            </summary>
+        </member>
+        <member name="T:HL7Lib.Segments.NPU">
+            <summary>
+            NPU Class: Constructs an HL7 NPU Segment Object
+            </summary>
+        </member>
+        <member name="T:HL7Lib.Segments.NSC">
+            <summary>
+            NSC Class: Constructs an HL7 NSC Segment Object
+            </summary>
+        </member>
+        <member name="T:HL7Lib.Segments.NST">
+            <summary>
+            NST Class: Constructs an HL7 NST Segment Object
+            </summary>
+        </member>
+        <member name="T:HL7Lib.Segments.NTE">
+            <summary>
+            NTE Class: Constructs an HL7 NTE Segment Object
+            </summary>
+        </member>
+        <member name="T:HL7Lib.Segments.OBR">
+            <summary>
+            OBR Class: Constructs an HL7 OBR Segment Object
+            </summary>
+        </member>
+        <member name="T:HL7Lib.Segments.OBX">
+            <summary>
+            OBX Class: Constructs an HL7 OBX Segment Object
+            </summary>
+        </member>
+        <member name="T:HL7Lib.Segments.ODS">
+            <summary>
+            ODS Class: Constructs an HL7 ODS Segment Object
+            </summary>
+        </member>
+        <member name="T:HL7Lib.Segments.ODT">
+            <summary>
+            ODT Class: Constructs an HL7 ODT Segment Object
+            </summary>
+        </member>
+        <member name="T:HL7Lib.Segments.OM1">
+            <summary>
+            OM1 Class: Constructs an HL7 OM1 Segment Object
+            </summary>
+        </member>
+        <member name="T:HL7Lib.Segments.OM2">
+            <summary>
+            OM2 Class: Constructs an HL7 OM2 Segment Object
+            </summary>
+        </member>
+        <member name="T:HL7Lib.Segments.OM3">
+            <summary>
+            OM3 Class: Constructs an HL7 OM3 Segment Object
+            </summary>
+        </member>
+        <member name="T:HL7Lib.Segments.OM4">
+            <summary>
+            OM4 Class: Constructs an HL7 OM4 Segment Object
+            </summary>
+        </member>
+        <member name="T:HL7Lib.Segments.OM5">
+            <summary>
+            OM5 Class: Constructs an HL7 OM5 Segment Object
+            </summary>
+        </member>
+        <member name="T:HL7Lib.Segments.OM6">
+            <summary>
+            OM6 Class: Constructs an HL7 OM6 Segment Object
+            </summary>
+        </member>
+        <member name="T:HL7Lib.Segments.OM7">
+            <summary>
+            OM7 Class: Constructs an HL7 OM7 Segment Object
+            </summary>
+        </member>
+        <member name="T:HL7Lib.Segments.ORC">
+            <summary>
+            ORC Class: Constructs an HL7 ORC Segment Object
+            </summary>
+        </member>
+        <member name="T:HL7Lib.Segments.ORG">
+            <summary>
+            ORG Class: Constructs an HL7 ORG Segment Object
+            </summary>
+        </member>
+        <member name="T:HL7Lib.Segments.OVR">
+            <summary>
+            OVR Class: Constructs an HL7 OVR Segment Object
+            </summary>
+        </member>
+        <member name="T:HL7Lib.Segments.PCR">
+            <summary>
+            PCR Class: Constructs an HL7 PCR Segment Object
+            </summary>
+        </member>
+        <member name="T:HL7Lib.Segments.PD1">
+            <summary>
+            PD1 Class: Constructs an HL7 PD1 Segment Object
+            </summary>
+        </member>
+        <member name="T:HL7Lib.Segments.PDA">
+            <summary>
+            PDA Class: Constructs an HL7 PDA Segment Object
+            </summary>
+        </member>
+        <member name="T:HL7Lib.Segments.PDC">
+            <summary>
+            PDC Class: Constructs an HL7 PDC Segment Object
+            </summary>
+        </member>
+        <member name="T:HL7Lib.Segments.PEO">
+            <summary>
+            PEO Class: Constructs an HL7 PEO Segment Object
+            </summary>
+        </member>
+        <member name="T:HL7Lib.Segments.PES">
+            <summary>
+            PES Class: Constructs an HL7 PES Segment Object
+            </summary>
+        </member>
+        <member name="T:HL7Lib.Segments.PID">
+            <summary>
+            PID Class: Constructs an HL7 PID Segment Object
+            </summary>
+        </member>
+        <member name="T:HL7Lib.Segments.PR1">
+            <summary>
+            PR1 Class: Constructs an HL7 PR1 Segment Object
+            </summary>
+        </member>
+        <member name="T:HL7Lib.Segments.PRA">
+            <summary>
+            PRA Class: Constructs an HL7 PRA Segment Object
+            </summary>
+        </member>
+        <member name="T:HL7Lib.Segments.PRB">
+            <summary>
+            PRB Class: Constructs an HL7 PRB Segment Object
+            </summary>
+        </member>
+        <member name="T:HL7Lib.Segments.PRC">
+            <summary>
+            PRC Class: Constructs an HL7 PRC Segment Object
+            </summary>
+        </member>
+        <member name="T:HL7Lib.Segments.PRD">
+            <summary>
+            PRD Class: Constructs an HL7 PRD Segment Object
+            </summary>
+        </member>
+        <member name="T:HL7Lib.Segments.PSH">
+            <summary>
+            PSH Class: Constructs an HL7 PSH Segment Object
+            </summary>
+        </member>
+        <member name="T:HL7Lib.Segments.PTH">
+            <summary>
+            PTH Class: Constructs an HL7 PTH Segment Object
+            </summary>
+        </member>
+        <member name="T:HL7Lib.Segments.PV1">
+            <summary>
+            PV1 Class: Constructs an HL7 PV1 Segment Object
+            </summary>
+        </member>
+        <member name="T:HL7Lib.Segments.PV2">
+            <summary>
+            PV2 Class: Constructs an HL7 PV2 Segment Object
+            </summary>
+        </member>
+        <member name="T:HL7Lib.Segments.QAK">
+            <summary>
+            QAK Class: Constructs an HL7 QAK Segment Object
+            </summary>
+        </member>
+        <member name="T:HL7Lib.Segments.QID">
+            <summary>
+            QID Class: Constructs an HL7 QID Segment Object
+            </summary>
+        </member>
+        <member name="T:HL7Lib.Segments.QPD">
+            <summary>
+            QPD Class: Constructs an HL7 QPD Segment Object
+            </summary>
+        </member>
+        <member name="T:HL7Lib.Segments.QRD">
+            <summary>
+            QRD Class: Constructs an HL7 QRD Segment Object
+            </summary>
+        </member>
+        <member name="T:HL7Lib.Segments.QRF">
+            <summary>
+            QRF Class: Constructs an HL7 QRF Segment Object
+            </summary>
+        </member>
+        <member name="T:HL7Lib.Segments.QRI">
+            <summary>
+            QRI Class: Constructs an HL7 QRI Segment Object
+            </summary>
+        </member>
+        <member name="T:HL7Lib.Segments.RCP">
+            <summary>
+            RCP Class: Constructs an HL7 RCP Segment Object
+            </summary>
+        </member>
+        <member name="T:HL7Lib.Segments.RDF">
+            <summary>
+            RDF Class: Constructs an HL7 RDF Segment Object
+            </summary>
+        </member>
+        <member name="T:HL7Lib.Segments.RF1">
+            <summary>
+            RF1 Class: Constructs an HL7 RF1 Segment Object
+            </summary>
+        </member>
+        <member name="T:HL7Lib.Segments.RGS">
+            <summary>
+            RGS Class: Constructs an HL7 RGS Segment Object
+            </summary>
+        </member>
+        <member name="T:HL7Lib.Segments.RMI">
+            <summary>
+            RMI Class: Constructs an HL7 RMI Segment Object
+            </summary>
+        </member>
+        <member name="T:HL7Lib.Segments.ROL">
+            <summary>
+            ROL Class: Constructs an HL7 ROL Segment Object
+            </summary>
+        </member>
+        <member name="T:HL7Lib.Segments.RQ1">
+            <summary>
+            RQ1 Class: Constructs an HL7 RQ1 Segment Object
+            </summary>
+        </member>
+        <member name="T:HL7Lib.Segments.RQD">
+            <summary>
+            RQD Class: Constructs an HL7 RQD Segment Object
+            </summary>
+        </member>
+        <member name="T:HL7Lib.Segments.RXA">
+            <summary>
+            RXA Class: Constructs an HL7 RXA Segment Object
+            </summary>
+        </member>
+        <member name="T:HL7Lib.Segments.RXC">
+            <summary>
+            RXC Class: Constructs an HL7 RXC Segment Object
+            </summary>
+        </member>
+        <member name="T:HL7Lib.Segments.RXD">
+            <summary>
+            RXD Class: Constructs an HL7 RXD Segment Object
+            </summary>
+        </member>
+        <member name="T:HL7Lib.Segments.RXE">
+            <summary>
+            RXE Class: Constructs an HL7 RXE Segment Object
+            </summary>
+        </member>
+        <member name="T:HL7Lib.Segments.RXG">
+            <summary>
+            RXG Class: Constructs an HL7 RXG Segment Object
+            </summary>
+        </member>
+        <member name="T:HL7Lib.Segments.RXO">
+            <summary>
+            RXO Class: Constructs an HL7 RXO Segment Object
+            </summary>
+        </member>
+        <member name="T:HL7Lib.Segments.RXR">
+            <summary>
+            RXR Class: Constructs an HL7 RXR Segment Object
+            </summary>
+        </member>
+        <member name="T:HL7Lib.Segments.SAC">
+            <summary>
+            SAC Class: Constructs an HL7 SAC Segment Object
+            </summary>
+        </member>
+        <member name="T:HL7Lib.Segments.SCH">
+            <summary>
+            SCH Class: Constructs an HL7 SCH Segment Object
+            </summary>
+        </member>
+        <member name="T:HL7Lib.Segments.SFT">
+            <summary>
+            SFT Class: Constructs an HL7 SFT Segment Object
+            </summary>
+        </member>
+        <member name="T:HL7Lib.Segments.SID">
+            <summary>
+            SID Class: Constructs an HL7 SID Segment Object
+            </summary>
+        </member>
+        <member name="T:HL7Lib.Segments.SPM">
+            <summary>
+            SPM Class: Constructs an HL7 SPM Segment Object
+            </summary>
+        </member>
+        <member name="T:HL7Lib.Segments.SPR">
+            <summary>
+            SPR Class: Constructs an HL7 SPR Segment Object
+            </summary>
+        </member>
+        <member name="T:HL7Lib.Segments.STF">
+            <summary>
+            STF Class: Constructs an HL7 STF Segment Object
+            </summary>
+        </member>
+        <member name="T:HL7Lib.Segments.TCC">
+            <summary>
+            TCC Class: Constructs an HL7 TCC Segment Object
+            </summary>
+        </member>
+        <member name="T:HL7Lib.Segments.TCD">
+            <summary>
+            TCD Class: Constructs an HL7 TCD Segment Object
+            </summary>
+        </member>
+        <member name="T:HL7Lib.Segments.TQ1">
+            <summary>
+            TQ1 Class: Constructs an HL7 TQ1 Segment Object
+            </summary>
+        </member>
+        <member name="T:HL7Lib.Segments.TQ2">
+            <summary>
+            TQ2 Class: Constructs an HL7 TQ2 Segment Object
+            </summary>
+        </member>
+        <member name="T:HL7Lib.Segments.TXA">
+            <summary>
+            TXA Class: Constructs an HL7 TXA Segment Object
+            </summary>
+        </member>
+        <member name="T:HL7Lib.Segments.UB1">
+            <summary>
+            UB1 Class: Constructs an HL7 UB1 Segment Object
+            </summary>
+        </member>
+        <member name="T:HL7Lib.Segments.UB2">
+            <summary>
+            UB2 Class: Constructs an HL7 UB2 Segment Object
+            </summary>
+        </member>
+        <member name="T:HL7Lib.Segments.URD">
+            <summary>
+            URD Class: Constructs an HL7 URD Segment Object
+            </summary>
+        </member>
+        <member name="T:HL7Lib.Segments.URS">
+            <summary>
+            URS Class: Constructs an HL7 URS Segment Object
+            </summary>
+        </member>
+        <member name="T:HL7Lib.Segments.VAR">
+            <summary>
+            VAR Class: Constructs an HL7 VAR Segment Object
+            </summary>
+        </member>
+        <member name="T:HL7Lib.Segments.VTQ">
+            <summary>
+            VTQ Class: Constructs an HL7 VTQ Segment Object
             </summary>
         </member>
     </members>

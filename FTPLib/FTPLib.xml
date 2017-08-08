@@ -4,74 +4,6 @@
         <name>FTPLib</name>
     </assembly>
     <members>
-        <member name="T:FTPLib.FTPOptions">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="M:FTPLib.FTPOptions.GetFTPConnections">
-            <summary>
-            Pulls the list of FTP Connection files
-            </summary>
-            <returns>The list of FTP Connection files</returns>
-        </member>
-        <member name="M:FTPLib.FTPOptions.Load(System.String)">
-            <summary>
-            Loads the specified FTP Connection file
-            </summary>
-            <param name="FTPFile">The FTP Connection file to open</param>
-            <returns>The FTP Options pulled from the FTP Connection file</returns>
-        </member>
-        <member name="M:FTPLib.FTPOptions.Save(FTPLib.FTPOptions,System.String)">
-            <summary>
-            Saves the specified FTP Options Connection File.
-            </summary>
-            <param name="ops">The FTP Options to save</param>
-            <param name="conName">The file name to use</param>
-        </member>
-        <member name="M:FTPLib.FTPOptions.Delete(System.String)">
-            <summary>
-            Deletes the specified connection file
-            </summary>
-            <param name="conName">The connection file to delete</param>
-        </member>
-        <member name="M:FTPLib.FTPOptions.RemoveUnsupportedChars(System.String)">
-            <summary>
-            Removes the specified characters from the file name.
-            </summary>
-            <param name="FileName">The File Name to Clean</param>
-            <returns>The File Name after cleaning unsupported characters from it</returns>
-        </member>
-        <member name="P:FTPLib.FTPOptions.UserName">
-            <summary>
-            The User Name to use with this FTP Connection
-            </summary>
-        </member>
-        <member name="P:FTPLib.FTPOptions.UserPassword">
-            <summary>
-            The Password to use with this FTP Connection
-            </summary>
-        </member>
-        <member name="P:FTPLib.FTPOptions.FTPAddress">
-            <summary>
-            The FTP Address to use for this FTP Connection
-            </summary>
-        </member>
-        <member name="P:FTPLib.FTPOptions.UsePassive">
-            <summary>
-            Determines if thsi FTP Connection should use passive mode
-            </summary>
-        </member>
-        <member name="P:FTPLib.FTPOptions.AnonymousLogin">
-            <summary>
-            Determines if this FTP Connection should use Anonymous Login
-            </summary>
-        </member>
-        <member name="P:FTPLib.FTPOptions.UseSSL">
-            <summary>
-            Determines if SSL should be used with this FTP Connection
-            </summary>
-        </member>
         <member name="T:FTPLib.FTPOperations">
             <summary>
             Provides functions for FTP Operations: Upload, Download, and List.
@@ -119,6 +51,74 @@
             <param name="Options">The FTP Options to use</param>
             <param name="RemotePath">The remote path to use</param>
             <returns>The FTP Web Request to be used</returns>
+        </member>
+        <member name="T:FTPLib.FTPOptions">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:FTPLib.FTPOptions.UserName">
+            <summary>
+            The User Name to use with this FTP Connection
+            </summary>
+        </member>
+        <member name="P:FTPLib.FTPOptions.UserPassword">
+            <summary>
+            The Password to use with this FTP Connection
+            </summary>
+        </member>
+        <member name="P:FTPLib.FTPOptions.FTPAddress">
+            <summary>
+            The FTP Address to use for this FTP Connection
+            </summary>
+        </member>
+        <member name="P:FTPLib.FTPOptions.UsePassive">
+            <summary>
+            Determines if thsi FTP Connection should use passive mode
+            </summary>
+        </member>
+        <member name="P:FTPLib.FTPOptions.AnonymousLogin">
+            <summary>
+            Determines if this FTP Connection should use Anonymous Login
+            </summary>
+        </member>
+        <member name="P:FTPLib.FTPOptions.UseSSL">
+            <summary>
+            Determines if SSL should be used with this FTP Connection
+            </summary>
+        </member>
+        <member name="M:FTPLib.FTPOptions.GetFTPConnections">
+            <summary>
+            Pulls the list of FTP Connection files
+            </summary>
+            <returns>The list of FTP Connection files</returns>
+        </member>
+        <member name="M:FTPLib.FTPOptions.Load(System.String)">
+            <summary>
+            Loads the specified FTP Connection file
+            </summary>
+            <param name="FTPFile">The FTP Connection file to open</param>
+            <returns>The FTP Options pulled from the FTP Connection file</returns>
+        </member>
+        <member name="M:FTPLib.FTPOptions.Save(FTPLib.FTPOptions,System.String)">
+            <summary>
+            Saves the specified FTP Options Connection File.
+            </summary>
+            <param name="ops">The FTP Options to save</param>
+            <param name="conName">The file name to use</param>
+        </member>
+        <member name="M:FTPLib.FTPOptions.Delete(System.String)">
+            <summary>
+            Deletes the specified connection file
+            </summary>
+            <param name="conName">The connection file to delete</param>
+        </member>
+        <member name="M:FTPLib.FTPOptions.RemoveUnsupportedChars(System.String)">
+            <summary>
+            Removes the specified characters from the file name.
+            </summary>
+            <param name="FileName">The File Name to Clean</param>
+            <returns>The File Name after cleaning unsupported characters from it</returns>
         </member>
     </members>
 </doc>
