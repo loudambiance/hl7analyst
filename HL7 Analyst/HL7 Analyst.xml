@@ -1,0 +1,2478 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>HL7 Analyst</name>
+    </assembly>
+    <members>
+        <member name="T:HL7_Analyst.frmSearch">
+            <summary>
+            Search Form: Searches files in specified locations for messages containing the search terms.
+            </summary>
+        </member>
+        <member name="F:HL7_Analyst.frmSearch.Messages">
+            <summary>
+            The Messages being returned after the search
+            </summary>
+        </member>
+        <member name="M:HL7_Analyst.frmSearch.#ctor(System.String)">
+            <summary>
+            Initialization Method
+            </summary>        
+        </member>
+        <member name="M:HL7_Analyst.frmSearch.UpdateCurrentFile(System.String)">
+            <summary>
+            Update the current file label
+            </summary>
+            <param name="v">The file to update to</param>
+        </member>
+        <member name="M:HL7_Analyst.frmSearch.UpdateMatchCount(System.String)">
+            <summary>
+            Updates the match count label
+            </summary>
+            <param name="v">The count to update to</param>
+        </member>
+        <member name="M:HL7_Analyst.frmSearch.CloseForm">
+            <summary>
+            Closes the form
+            </summary>
+        </member>
+        <member name="M:HL7_Analyst.frmSearch.frmSearch_Load(System.Object,System.EventArgs)">
+            <summary>
+            Form Load Event: Loads settings and sets up Background Worker.
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:HL7_Analyst.frmSearch.bgw_DoWork(System.Object,System.ComponentModel.DoWorkEventArgs)">
+            <summary>
+            Background Worker Do Work Event: Performs search
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:HL7_Analyst.frmSearch.txtSearchPath_TextChanged(System.Object,System.EventArgs)">
+            <summary>
+            Populates the sub-folders selection box if the entered path exists.
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:HL7_Analyst.frmSearch.btnCancel_Click(System.Object,System.EventArgs)">
+            <summary>
+            Cancels the background workers operations and closes the form.
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:HL7_Analyst.frmSearch.btnSearch_Click(System.Object,System.EventArgs)">
+            <summary>
+            Starts the search using the background worker thread
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:HL7_Analyst.frmSearch.btnComponents_Click(System.Object,System.EventArgs)">
+            <summary>
+            Opens the Build Search Query form.
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:HL7_Analyst.frmSearch.SearchFile(System.String)">
+            <summary>
+            Searches the specified file
+            </summary>
+            <param name="f">The file to search</param>
+            <returns>A list of messages that match search query</returns>
+        </member>
+        <member name="M:HL7_Analyst.frmSearch.SearchMessage(HL7Lib.Base.Message)">
+            <summary>
+            Searches the message using the search query.
+            </summary>
+            <param name="m">The message to search</param>
+            <returns>Returns true if the message matches the search query</returns>
+        </member>
+        <member name="F:HL7_Analyst.frmSearch.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:HL7_Analyst.frmSearch.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:HL7_Analyst.frmSearch.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="T:HL7_Analyst.frmSegments">
+            <summary>
+            Filled Segments/Fields/Components Form
+            </summary>
+        </member>
+        <member name="M:HL7_Analyst.frmSegments.#ctor(System.Collections.Generic.List{System.String})">
+            <summary>
+            Initialization Method
+            </summary>
+            <param name="Messages">The messages to check</param>
+        </member>
+        <member name="M:HL7_Analyst.frmSegments.AddListViewItems(System.Windows.Forms.ListViewItem)">
+            <summary>
+            Add list view item to filled fields list view
+            </summary>
+            <param name="lvi">List view item</param>
+        </member>
+        <member name="M:HL7_Analyst.frmSegments.UpdateFormCursor(System.Windows.Forms.Cursor)">
+            <summary>
+            Update forms cursor
+            </summary>
+            <param name="c">Cursor to use</param>
+        </member>
+        <member name="M:HL7_Analyst.frmSegments.frmSegments_Load(System.Object,System.EventArgs)">
+            <summary>
+            Form Load Event: sets up Background Worker
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:HL7_Analyst.frmSegments.bgw_DoWork(System.Object,System.ComponentModel.DoWorkEventArgs)">
+            <summary>
+            Background Worker Do Work Event: fills in the filled fields list view
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:HL7_Analyst.frmSegments.btnSaveReport_Click(System.Object,System.EventArgs)">
+            <summary>
+            Saves the report
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:HL7_Analyst.frmSegments.lvItems_KeyDown(System.Object,System.Windows.Forms.KeyEventArgs)">
+            <summary>
+            List View Item Key Down Event: Sets up shortcut key support for saving the report.
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:HL7_Analyst.frmSegments.SaveReport">
+            <summary>
+            Saves the current support to disk
+            </summary>
+        </member>
+        <member name="F:HL7_Analyst.frmSegments.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:HL7_Analyst.frmSegments.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:HL7_Analyst.frmSegments.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="T:HL7_Analyst.frmDatabaseLogin">
+            <summary>
+            Database Login Form: Sets up the database connection string object to use for this database connection
+            </summary>
+        </member>
+        <member name="F:HL7_Analyst.frmDatabaseLogin.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:HL7_Analyst.frmDatabaseLogin.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:HL7_Analyst.frmDatabaseLogin.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="F:HL7_Analyst.frmDatabaseLogin.SQLConnectionString">
+            <summary>
+            The SQL Connection String built from the information entered into this form
+            </summary>
+        </member>
+        <member name="M:HL7_Analyst.frmDatabaseLogin.#ctor">
+            <summary>
+            Initialization Method
+            </summary>
+        </member>
+        <member name="M:HL7_Analyst.frmDatabaseLogin.cbAuthenticationType_SelectedIndexChanged(System.Object,System.EventArgs)">
+            <summary>
+            Authentication Type Selected Index Changed Event: Based on the selected index sets the User Name and Password textboxes to enabled or not-enabled
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:HL7_Analyst.frmDatabaseLogin.frmDatabaseLogin_Load(System.Object,System.EventArgs)">
+            <summary>
+            Form Load Event: Sets the default selected authentication type
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:HL7_Analyst.frmDatabaseLogin.txtLogin_Click(System.Object,System.EventArgs)">
+            <summary>
+            Sets up the connection object to pass to the database connection form then closes the form
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:HL7_Analyst.frmDatabaseLogin.txtCancel_Click(System.Object,System.EventArgs)">
+            <summary>
+            Closes the form
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="T:HL7_Analyst.frmUpdateAvailable">
+            <summary>
+            Displays if an update is available
+            </summary>
+        </member>
+        <member name="F:HL7_Analyst.frmUpdateAvailable.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:HL7_Analyst.frmUpdateAvailable.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:HL7_Analyst.frmUpdateAvailable.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="M:HL7_Analyst.frmUpdateAvailable.#ctor">
+            <summary>
+            Initialization Method
+            </summary>
+        </member>
+        <member name="M:HL7_Analyst.frmUpdateAvailable.llblDownloadLocation_LinkClicked(System.Object,System.Windows.Forms.LinkLabelLinkClickedEventArgs)">
+            <summary>
+            Link label click event: Navigates to the download location on CodePlex
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:HL7_Analyst.frmUpdateAvailable.btnClose_Click(System.Object,System.EventArgs)">
+            <summary>
+            Closes the form
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="T:HL7_Analyst.UpdateChecker">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:HL7_Analyst.UpdateChecker.UpdateCheck">
+            <summary>
+            Reads the RSS feed from CodePlex for releases and parses the data out of it looking for new updates to the list labeled Released.
+            </summary>
+            <returns>Returns true if a new release is available.</returns>
+        </member>
+        <member name="M:HL7_Analyst.UpdateChecker.ReadLastRunDate">
+            <summary>
+            Reads the last run date from disk
+            </summary>
+            <returns>Returns the last run date from disk if the file exists, if not it returns the current date/time</returns>
+        </member>
+        <member name="M:HL7_Analyst.UpdateChecker.SaveLastRunDate">
+            <summary>
+            Saves the current date to file.
+            </summary>
+        </member>
+        <member name="T:HL7_Analyst.LLP">
+            <summary>
+            LLP Class: Defines an LLP object
+            </summary>
+        </member>
+        <member name="M:HL7_Analyst.LLP.#ctor">
+            <summary>
+            Empty Constructor
+            </summary>
+        </member>
+        <member name="M:HL7_Analyst.LLP.#ctor(System.Char,System.String,System.String)">
+            <summary>
+            Constructs an LLP object with the specified values
+            </summary>
+            <param name="_CharValue">The Char Value to use in the LLP Wrapper</param>
+            <param name="_Hex">The Hex Value of the Char Code</param>
+            <param name="_Desc">The Hex Code Description</param>
+        </member>
+        <member name="M:HL7_Analyst.LLP.LoadLLP(System.String)">
+            <summary>
+            Pulls an LLP Object from the list of LLP objects
+            </summary>
+            <param name="_Hex">The Hex Value of the Char Code</param>
+            <returns>Returns the LLP object</returns>
+        </member>
+        <member name="M:HL7_Analyst.LLP.GetLLPString(System.String)">
+            <summary>
+            Pulls the LLP Char Value based on the Hex code passed in
+            </summary>
+            <param name="s">The hex code to search for</param>
+            <returns>The LLP Char Value</returns>
+        </member>
+        <member name="M:HL7_Analyst.LLP.LoadLLPList">
+            <summary>
+            Loads the list of LLP accepted values
+            </summary>
+            <returns>The List of LLP values</returns>
+        </member>
+        <member name="P:HL7_Analyst.LLP.CharValue">
+            <summary>
+            The Char Value to use in the LLP Wrapper
+            </summary>
+        </member>
+        <member name="P:HL7_Analyst.LLP.Hex">
+            <summary>
+            The Hex Value of the Char Code
+            </summary>
+        </member>
+        <member name="P:HL7_Analyst.LLP.Description">
+            <summary>
+            The Hex Code Description
+            </summary>
+        </member>
+        <member name="T:HL7_Analyst.frmOptions">
+            <summary>
+            Options Form
+            </summary>
+        </member>
+        <member name="F:HL7_Analyst.frmOptions.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:HL7_Analyst.frmOptions.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:HL7_Analyst.frmOptions.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="M:HL7_Analyst.frmOptions.#ctor">
+            <summary>
+            Initialization Method
+            </summary>
+        </member>
+        <member name="M:HL7_Analyst.frmOptions.frmOptions_Load(System.Object,System.EventArgs)">
+            <summary>
+            Form Load Event: Sets up current settings and displays them.
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:HL7_Analyst.frmOptions.btnSearchPath_Click(System.Object,System.EventArgs)">
+            <summary>
+            Search Path Button Click Event: Displays an folder browser dialog and sets the search path textbox to the selected folder.
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:HL7_Analyst.frmOptions.btnCancel_Click(System.Object,System.EventArgs)">
+            <summary>
+            Closes the form.
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:HL7_Analyst.frmOptions.btnOK_Click(System.Object,System.EventArgs)">
+            <summary>
+            Saves the settings changes that were made
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="T:HL7_Analyst.frmLLP">
+            <summary>
+            LLP Form: Used to selected LLP Header and Trailer hex codes
+            </summary>
+        </member>
+        <member name="F:HL7_Analyst.frmLLP.LLPList">
+            <summary>
+            The list of LLPObjects selected by the user.
+            </summary>
+        </member>
+        <member name="M:HL7_Analyst.frmLLP.#ctor">
+            <summary>
+            Initialization Method: Loads the LLP List and sets the List View to the values returned.
+            </summary>
+        </member>
+        <member name="M:HL7_Analyst.frmLLP.dgvLLP_CurrentCellDirtyStateChanged(System.Object,System.EventArgs)">
+            <summary>
+            Checks if it's a dirty cell state and if it is commits the edit.
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:HL7_Analyst.frmLLP.dgvLLP_CellValueChanged(System.Object,System.Windows.Forms.DataGridViewCellEventArgs)">
+            <summary>
+            Checks the checked cell state, if it's checked it adds it to the LLP List if not it removes it.
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="F:HL7_Analyst.frmLLP.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:HL7_Analyst.frmLLP.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:HL7_Analyst.frmLLP.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="T:HL7_Analyst.frmFTPConnection">
+            <summary>
+            FTP Connection Form: Used to add a new connection options file.
+            </summary>
+        </member>
+        <member name="F:HL7_Analyst.frmFTPConnection.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:HL7_Analyst.frmFTPConnection.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:HL7_Analyst.frmFTPConnection.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="F:HL7_Analyst.frmFTPConnection.ftpOps">
+            <summary>
+            The FTPOptions filled in by the user
+            </summary>
+        </member>
+        <member name="F:HL7_Analyst.frmFTPConnection.ConnectionName">
+            <summary>
+            The Connection Name entered by the user
+            </summary>
+        </member>
+        <member name="M:HL7_Analyst.frmFTPConnection.#ctor">
+            <summary>
+            Initialization Method
+            </summary>
+        </member>
+        <member name="M:HL7_Analyst.frmFTPConnection.frmFTPConnection_Load(System.Object,System.EventArgs)">
+            <summary>
+            Form Load Event: Sets the URL Textbox Selected Start
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:HL7_Analyst.frmFTPConnection.cbUseAnonymous_CheckedChanged(System.Object,System.EventArgs)">
+            <summary>
+            Use Anonymous Checked Changed Event: If Checked it disables User Name Password, if unchecked it enables them.
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:HL7_Analyst.frmFTPConnection.btnSave_Click(System.Object,System.EventArgs)">
+            <summary>
+            Saves the FTP Connection Options File
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:HL7_Analyst.frmFTPConnection.btnCancel_Click(System.Object,System.EventArgs)">
+            <summary>
+            Cancel Button Click Event: Closes the dialog box with a DialogResult of cancelled.
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="T:HL7_Analyst.FilledFields">
+            <summary>
+            FilledFields class: Used to store calculated information about each non-empty field or component in a message
+            </summary>
+        </member>
+        <member name="M:HL7_Analyst.FilledFields.Calculate(System.Collections.Generic.List{System.String})">
+            <summary>
+            Calculates the filled in fields/components in the selected message. 
+            </summary>
+            <param name="Messages">The message to check</param>
+            <returns>A list of FilledFields with calculation logic for each object</returns>
+        </member>
+        <member name="P:HL7_Analyst.FilledFields.MinLength">
+            <summary>
+            The Minimum length of a list of items
+            </summary>
+        </member>
+        <member name="P:HL7_Analyst.FilledFields.MaxLength">
+            <summary>
+            The Maximum length of a list of items
+            </summary>
+        </member>
+        <member name="P:HL7_Analyst.FilledFields.AvergeLength">
+            <summary>
+            The Average length of a list of items
+            </summary>
+        </member>
+        <member name="P:HL7_Analyst.FilledFields.Name">
+            <summary>
+            The Name of the item
+            </summary>
+        </member>
+        <member name="P:HL7_Analyst.FilledFields.ID">
+            <summary>
+            The ID of the item
+            </summary>
+        </member>
+        <member name="T:HL7_Analyst.Properties.Resources">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="P:HL7_Analyst.Properties.Resources.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:HL7_Analyst.Properties.Resources.Culture">
+            <summary>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+        <member name="P:HL7_Analyst.Properties.Resources.License">
+             <summary>
+               Looks up a localized string similar to GNU GENERAL PUBLIC LICENSE
+                                   Version 2, June 1991
+            
+             Copyright (C) 1989, 1991 Free Software Foundation, Inc.,
+             51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
+             Everyone is permitted to copy and distribute verbatim copies
+             of this license document, but changing it is not allowed.
+            
+                                        Preamble
+            
+              The licenses for most software are designed to take away your
+            freedom to share and change it.  By contrast, the GNU General Public
+            License is intend [rest of string was truncated]&quot;;.
+             </summary>
+        </member>
+        <member name="T:HL7_Analyst.Reports">
+            <summary>
+            Reports Class: Used to perform operations on Report Files.
+            </summary>
+        </member>
+        <member name="M:HL7_Analyst.Reports.LoadReport(System.String,System.Collections.Generic.List{System.String})">
+            <summary>
+            LoadReport Method: Loads the specified report with the values in a list of messages
+            </summary>
+            <param name="ReportName">The report to load</param>
+            <param name="Messages">The list of Messages to use in the report</param>
+        </member>
+        <member name="M:HL7_Analyst.Reports.GetColumn(System.String)">
+            <summary>
+            GetColumn Method: Pulls the specified column from the list of columns.
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HL7_Analyst.Reports.SaveReport(System.Collections.Generic.List{System.String},System.String)">
+            <summary>
+            SaveReport Method: Saves a report file with the specified name and columns
+            </summary>
+            <param name="ReportItems">The report items to use</param>
+            <param name="ReportName">The report name to use</param>
+        </member>
+        <member name="M:HL7_Analyst.Reports.DeleteReport(System.String)">
+            <summary>
+            Delete Report Method: Deletes the specified report file
+            </summary>
+            <param name="ReportName"></param>
+        </member>
+        <member name="P:HL7_Analyst.Reports.Columns">
+            <summary>
+            The Columns assigned to this report
+            </summary>
+        </member>
+        <member name="P:HL7_Analyst.Reports.Items">
+            <summary>
+            The Items for this report
+            </summary>
+        </member>
+        <member name="T:HL7_Analyst.MessageType">
+            <summary>
+            MessageType Class: Used to store message type descriptions
+            </summary>
+        </member>
+        <member name="M:HL7_Analyst.MessageType.#ctor(System.String)">
+            <summary>
+            MessageType constructor
+            </summary>
+            <param name="MsgType">The message type name</param>
+        </member>
+        <member name="M:HL7_Analyst.MessageType.GetMessageDescription(System.String)">
+            <summary>
+            Loads and pulls the specified MessageType description
+            </summary>
+            <param name="MsgType">The message type to load</param>
+            <returns>The message type description</returns>
+        </member>
+        <member name="P:HL7_Analyst.MessageType.Type">
+            <summary>
+            The message type name
+            </summary>
+        </member>
+        <member name="P:HL7_Analyst.MessageType.Description">
+            <summary>
+            The message type description
+            </summary>
+        </member>
+        <member name="T:HL7_Analyst.frmNewReport">
+            <summary>
+            New Report Form: Gathers the new report name
+            </summary>
+        </member>
+        <member name="M:HL7_Analyst.frmNewReport.#ctor">
+            <summary>
+            Initialization Method
+            </summary>
+        </member>
+        <member name="M:HL7_Analyst.frmNewReport.txtReportName_KeyDown(System.Object,System.Windows.Forms.KeyEventArgs)">
+            <summary>
+            Report Name Texbox Key Down Event
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="F:HL7_Analyst.frmNewReport.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:HL7_Analyst.frmNewReport.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:HL7_Analyst.frmNewReport.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="T:HL7_Analyst.Helper">
+            <summary>
+            Helper Class: Provides helper methods
+            </summary>
+        </member>
+        <member name="M:HL7_Analyst.Helper.RemoveUnsupportedChars(System.String)">
+            <summary>
+            Removes the specified characters from the file name.
+            </summary>
+            <param name="FileName">The File Name to Clean</param>
+            <returns>The File Name after cleaning unsupported characters from it</returns>
+        </member>
+        <member name="T:HL7_Analyst.frmTCPIPConnection">
+            <summary>
+            TCPIP Connection Form: Used to create a new TCP/IP Connection File
+            </summary>
+        </member>
+        <member name="F:HL7_Analyst.frmTCPIPConnection.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:HL7_Analyst.frmTCPIPConnection.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:HL7_Analyst.frmTCPIPConnection.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="F:HL7_Analyst.frmTCPIPConnection.TCPIPOps">
+            <summary>
+            The TCPIPOptions filled in by the user
+            </summary>
+        </member>
+        <member name="F:HL7_Analyst.frmTCPIPConnection.OptionsName">
+            <summary>
+            The Connection Name entered by the user
+            </summary>
+        </member>
+        <member name="M:HL7_Analyst.frmTCPIPConnection.#ctor">
+            <summary>
+            Initialization Method
+            </summary>
+        </member>
+        <member name="M:HL7_Analyst.frmTCPIPConnection.btnSave_Click(System.Object,System.EventArgs)">
+            <summary>
+            Save Button Click Event: Saves the TCP/IP Options to File
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:HL7_Analyst.frmTCPIPConnection.btnCancel_Click(System.Object,System.EventArgs)">
+            <summary>
+            Cancels the Dialog Box
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:HL7_Analyst.frmTCPIPConnection.ParseHostAddress(System.String)">
+            <summary>
+            Parses a Host Address from a string
+            </summary>
+            <param name="s">The string to parse</param>
+            <returns>The IPAddress</returns>
+        </member>
+        <member name="M:HL7_Analyst.frmTCPIPConnection.ParsePort(System.String)">
+            <summary>
+            Parses a port
+            </summary>
+            <param name="s">The string to parse</param>
+            <returns>The port int</returns>
+        </member>
+        <member name="M:HL7_Analyst.frmTCPIPConnection.btnHeader_Click(System.Object,System.EventArgs)">
+            <summary>
+            Loads the LLP form
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:HL7_Analyst.frmTCPIPConnection.btnTrailer_Click(System.Object,System.EventArgs)">
+            <summary>
+            Loads the LLP Form
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="T:HL7_Analyst.frmMessageStats">
+            <summary>
+            Message Stats form: Displays a graph (Using ZedGraph) of the specified statistics from the messages currently loaded into the HL7 Analyst.
+            </summary>
+        </member>
+        <member name="M:HL7_Analyst.frmMessageStats.#ctor(System.Collections.Generic.List{System.String},System.String,System.String,System.String)">
+            <summary>
+            Initialization Method
+            </summary>
+            <param name="msgs">The currently loaded messages</param>
+            <param name="gt">The graph title to use</param>
+            <param name="cID">The component ID to pull stats for</param>
+            <param name="gType">The type of graph to build</param>
+        </member>
+        <member name="M:HL7_Analyst.frmMessageStats.UpdateGraphCursor(System.Windows.Forms.Cursor)">
+            <summary>
+            Sets the graphs cursor to the specified cursor
+            </summary>
+            <param name="c">The cursor to use</param>
+        </member>
+        <member name="M:HL7_Analyst.frmMessageStats.RefreshGraph">
+            <summary>
+            Refreshes the graphs display
+            </summary>
+        </member>
+        <member name="M:HL7_Analyst.frmMessageStats.frmMessageStats_Load(System.Object,System.EventArgs)">
+            <summary>
+            Form Load Event: Sets the initial display of the graph and sets up the background worker.
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:HL7_Analyst.frmMessageStats.bgw_DoWork(System.Object,System.ComponentModel.DoWorkEventArgs)">
+            <summary>
+            Background Worker Do Work Event: Performs calculation logic and creates the chart
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:HL7_Analyst.frmMessageStats.ProcessStatChartItems">
+            <summary>
+            Calculates the stat chart values on the selected message components.
+            </summary>
+            <returns>The list of GraphItems to display in the chart.</returns>
+        </member>
+        <member name="M:HL7_Analyst.frmMessageStats.ProcessHourlyStatChartItems">
+            <summary>
+            Calculates the stat chart values on the Message Date/Time component of the MSH segment for Hourly Traffic Stats.
+            </summary>
+            <returns>The list of GraphItems to display in the chart.</returns>
+        </member>
+        <member name="M:HL7_Analyst.frmMessageStats.ProcessDailyStatChartItems">
+            <summary>
+            Calculates the stat chart values on the Message Date/Time component of the MSH segment for Daily Traffic Stats.
+            </summary>
+            <returns>The list of GraphItems to display in the chart.</returns>
+        </member>
+        <member name="M:HL7_Analyst.frmMessageStats.CreateChart(System.Collections.Generic.List{HL7_Analyst.GraphItems})">
+            <summary>
+            Creates the chart using the specified GraphItems.
+            </summary>
+            <param name="gItems">GraphItems to use</param>
+        </member>
+        <member name="M:HL7_Analyst.frmMessageStats.SetInitialGraphDisplay">
+            <summary>
+            Sets the initial display values for the graph.
+            </summary>
+        </member>
+        <member name="F:HL7_Analyst.frmMessageStats.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:HL7_Analyst.frmMessageStats.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:HL7_Analyst.frmMessageStats.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="T:HL7_Analyst.frmUniqueValues">
+            <summary>
+            Unique Values Form: Used to display unique values of a selected component and how many times that particular value occures in the open messages.
+            </summary>
+        </member>
+        <member name="M:HL7_Analyst.frmUniqueValues.#ctor(System.String,System.Collections.Generic.List{System.String})">
+            <summary>
+            Initialization Method
+            </summary>
+            <param name="cID">The Component ID selected</param>
+            <param name="msgs">The messages passed in from frmMain</param>
+        </member>
+        <member name="M:HL7_Analyst.frmUniqueValues.AddListViewItems(System.Windows.Forms.ListViewItem)">
+            <summary>
+            Add list view item to list view
+            </summary>
+            <param name="lvi">List view item</param>
+        </member>
+        <member name="M:HL7_Analyst.frmUniqueValues.UpdateFormCursor(System.Windows.Forms.Cursor)">
+            <summary>
+            Update forms cursor
+            </summary>
+            <param name="c">Cursor to use</param>
+        </member>
+        <member name="M:HL7_Analyst.frmUniqueValues.frmUniqueValues_Load(System.Object,System.EventArgs)">
+            <summary>
+            Sets up the background worker and kicks it off to setup the form display
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:HL7_Analyst.frmUniqueValues.bgw_DoWork(System.Object,System.ComponentModel.DoWorkEventArgs)">
+            <summary>
+            Background Worker Do Work Event: Loops over all messages and each component that matches the ID passed to the form and calculates the unique values and occurance counts.
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="F:HL7_Analyst.frmUniqueValues.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:HL7_Analyst.frmUniqueValues.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:HL7_Analyst.frmUniqueValues.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="T:HL7_Analyst.TCPIPOptions">
+            <summary>
+            TCPIPOtions Class: Used to create a TCPIP Options object and perform operations on it.
+            </summary>
+        </member>
+        <member name="M:HL7_Analyst.TCPIPOptions.GetTCPIPConnections">
+            <summary>
+            Pulls all TCP/IP Connection files from disk.
+            </summary>
+            <returns>The list of connection files</returns>
+        </member>
+        <member name="M:HL7_Analyst.TCPIPOptions.Load(System.String)">
+            <summary>
+            Loads a specific TCP/IP Options file from disk
+            </summary>
+            <param name="OptionsFile">The option file to load</param>
+            <returns>The TCPIPOptions object created from the file</returns>
+        </member>
+        <member name="M:HL7_Analyst.TCPIPOptions.Save(System.String,HL7_Analyst.TCPIPOptions)">
+            <summary>
+            Saves the specified connections to disk
+            </summary>
+            <param name="OptionsFile">The File name to use</param>
+            <param name="Options">The TCP/IP Connections to use</param>
+        </member>
+        <member name="M:HL7_Analyst.TCPIPOptions.Delete(System.String)">
+            <summary>
+            Deletes a TCP/IP Connection file from disk
+            </summary>
+            <param name="OptionsFile">The TCP/IP Connection file to delete</param>
+        </member>
+        <member name="P:HL7_Analyst.TCPIPOptions.HostAddress">
+            <summary>
+            The Host Address of this TCP/IP Object
+            </summary>
+        </member>
+        <member name="P:HL7_Analyst.TCPIPOptions.Port">
+            <summary>
+            The Port of this TCP/IP Object
+            </summary>
+        </member>
+        <member name="P:HL7_Analyst.TCPIPOptions.LLPHeader">
+            <summary>
+            The LLP Header character(s) to use for this TCP/IP Object
+            </summary>
+        </member>
+        <member name="P:HL7_Analyst.TCPIPOptions.LLPTrailer">
+            <summary>
+            The LLP Trailer character(s) to use for this TCP/IP Object
+            </summary>
+        </member>
+        <member name="P:HL7_Analyst.TCPIPOptions.WaitForAck">
+            <summary>
+            The Wait for Ack option for this TCP/IP Object, used to determine if an ack should be waited for before sending the next message.
+            </summary>
+        </member>
+        <member name="P:HL7_Analyst.TCPIPOptions.SendAck">
+            <summary>
+            The Send Ack option for this TCP/IP Object, used to determine if an ack should be sent for each received message.
+            </summary>
+        </member>
+        <member name="T:HL7_Analyst.frmBuildSearch">
+            <summary>
+            Build Search Query Form: Used to assist in file search query generation and execution.
+            </summary>
+        </member>
+        <member name="F:HL7_Analyst.frmBuildSearch.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:HL7_Analyst.frmBuildSearch.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:HL7_Analyst.frmBuildSearch.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="F:HL7_Analyst.frmBuildSearch.returnSearch">
+            <summary>
+            The returned search string after building the query
+            </summary>
+        </member>
+        <member name="M:HL7_Analyst.frmBuildSearch.#ctor(System.String)">
+            <summary>
+            Initialization Method: Sets the current search query for display
+            </summary>
+            <param name="query">The current search query</param>
+        </member>
+        <member name="M:HL7_Analyst.frmBuildSearch.AddRows(System.Collections.Generic.List{System.Object})">
+            <summary>
+            AddRows Method: Adds rows to the data grid across threads.
+            </summary>
+            <param name="objs">The rows cell object array</param>
+        </member>
+        <member name="M:HL7_Analyst.frmBuildSearch.UpdateFormCursor(System.Windows.Forms.Cursor)">
+            <summary>
+            UpdateFormCursor Method: Updates the forms cursor across threads.
+            </summary>
+            <param name="c">The cursor to use</param>
+        </member>
+        <member name="M:HL7_Analyst.frmBuildSearch.AddItems(System.Object)">
+            <summary>
+            AddItems Method: Adds items to the Segment Selector across threads.
+            </summary>
+            <param name="obj">The object to add</param>
+        </member>
+        <member name="M:HL7_Analyst.frmBuildSearch.UpdateText(System.String)">
+            <summary>
+            UpdateText Method: Updates the current text of the Segment Selector across threads.
+            </summary>
+            <param name="t">The text to display</param>
+        </member>
+        <member name="M:HL7_Analyst.frmBuildSearch.frmBuildSearch_Load(System.Object,System.EventArgs)">
+            <summary>
+            Form Load Event: Gets settings from file and sets up event handler for the background worker DoWork event.
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:HL7_Analyst.frmBuildSearch.bgw_DoWork(System.Object,System.ComponentModel.DoWorkEventArgs)">
+            <summary>
+            Background Worker Do Work Event: Sets the data grids display and adds all items to the segment selector
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:HL7_Analyst.frmBuildSearch.cbSegmentSelector_SelectedIndexChanged(System.Object,System.EventArgs)">
+            <summary>
+            Segment Selector Selected Index Changed Event: Loads the selected segments fields and components to the data grid.
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:HL7_Analyst.frmBuildSearch.dgvComponents_CellEndEdit(System.Object,System.Windows.Forms.DataGridViewCellEventArgs)">
+            <summary>
+            Data Grid Cell End Edit Event: Sets the entered value to the search query string builder for use in the frmSearch search terms box.
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:HL7_Analyst.frmBuildSearch.btnAdd_Click(System.Object,System.EventArgs)">
+            <summary>
+            Add Button Click Event: Adds a new search query group to the search query string builder.
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:HL7_Analyst.frmBuildSearch.btnOK_Click(System.Object,System.EventArgs)">
+            <summary>
+            OK Button Click Event: Returns the txtCurrentQuery text after building the search query, then closes the form.
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:HL7_Analyst.frmBuildSearch.btnCancel_Click(System.Object,System.EventArgs)">
+            <summary>
+            Cancel Button Click Event: Cancels the dialog box
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:HL7_Analyst.frmBuildSearch.LoadDataGrid(HL7Lib.Base.Segments)">
+            <summary>
+            Loads the data grid with the selected segments fields and components
+            </summary>
+            <param name="s">The segment to display</param>
+        </member>
+        <member name="M:HL7_Analyst.frmBuildSearch.AddSearchQueryItem(System.String,System.String)">
+            <summary>
+            Adds a search item to the search query
+            </summary>
+            <param name="id">The ID of the component to set a value for</param>
+            <param name="v">The value to use in the search term</param>
+        </member>
+        <member name="M:HL7_Analyst.frmBuildSearch.GetSearchQueryItem(System.String)">
+            <summary>
+            Pulls the specified search term
+            </summary>
+            <param name="id">The Component ID to pull</param>
+            <returns>The Search Term that was found</returns>
+        </member>
+        <member name="M:HL7_Analyst.frmBuildSearch.RemoveSearchQueryItem(System.String)">
+            <summary>
+            Removes a search term from the list with the specified component id
+            </summary>
+            <param name="id">The component ID to remove</param>
+        </member>
+        <member name="T:HL7_Analyst.Settings">
+            <summary>
+            Settings Class: Used to get settings from the disk and store them for use.
+            </summary>
+        </member>
+        <member name="M:HL7_Analyst.Settings.GetSettings">
+            <summary>
+            Pulls the settings from disk and sets the above properties
+            </summary>
+        </member>
+        <member name="M:HL7_Analyst.Settings.SaveSettings">
+            <summary>
+            Saves settings to disk
+            </summary>
+        </member>
+        <member name="M:HL7_Analyst.Settings.ConvertToSegments(System.String)">
+            <summary>
+            Converts the specified string to a Segments enum
+            </summary>
+            <param name="Seg">The segment string</param>
+            <returns>The Segments enum</returns>
+        </member>
+        <member name="P:HL7_Analyst.Settings.HideEmptyFields">
+            <summary>
+            HideEmptyFields boolean property, used to determine if Empty HL7 Fields should be hidden by default
+            </summary>
+        </member>
+        <member name="P:HL7_Analyst.Settings.Extensions">
+            <summary>
+            Extensions List property, used to setup default file extensions for opening files and searching
+            </summary>
+        </member>
+        <member name="P:HL7_Analyst.Settings.SearchPath">
+            <summary>
+            SearchPath string property, used to set the default search path folder
+            </summary>
+        </member>
+        <member name="P:HL7_Analyst.Settings.DefaultSegment">
+            <summary>
+            DefaultSegment Segments property, used to set the default segment selected in the Build Search Query form
+            </summary>
+        </member>
+        <member name="P:HL7_Analyst.Settings.CheckForUpdates">
+            <summary>
+            CheckForUpdates, used to allow update checking at application start.
+            </summary>
+        </member>
+        <member name="T:HL7_Analyst.frmReports">
+            <summary>
+            Reports Form: Displays selected report values in a data grid.
+            </summary>
+        </member>
+        <member name="M:HL7_Analyst.frmReports.#ctor(System.Collections.Generic.List{System.String},System.String)">
+            <summary>
+            Initialization Method: Sets the messages and report name at runtime
+            </summary>
+            <param name="Msgs">Messages to pull records from</param>
+            <param name="RN">Report name to use.</param>
+        </member>
+        <member name="M:HL7_Analyst.frmReports.AddColumns(HL7_Analyst.ReportColumn)">
+            <summary>
+            Adds columns to the data grid
+            </summary>
+            <param name="columnName">The column values to add</param>
+        </member>
+        <member name="M:HL7_Analyst.frmReports.AddRows(System.Collections.Generic.List{System.Object})">
+            <summary>
+            Adds rows to the data grid
+            </summary>
+            <param name="objs">The grid row object array to add</param>
+        </member>
+        <member name="M:HL7_Analyst.frmReports.UpdateFormText(System.String)">
+            <summary>
+            Updates the forms title text
+            </summary>
+            <param name="s">The text to update to</param>
+        </member>
+        <member name="M:HL7_Analyst.frmReports.UpdateFormCursor(System.Windows.Forms.Cursor)">
+            <summary>
+            Updates the forms cursor to the specified cursor
+            </summary>
+            <param name="c">Cursor to update to</param>
+        </member>
+        <member name="M:HL7_Analyst.frmReports.frmReports_Load(System.Object,System.EventArgs)">
+            <summary>
+            Form load event: Sets up background worker.
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:HL7_Analyst.frmReports.bgw_DoWork(System.Object,System.ComponentModel.DoWorkEventArgs)">
+            <summary>
+            Background Worker Do Work Event: Adds the reports rows to the data grid
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:HL7_Analyst.frmReports.btnSave_Click(System.Object,System.EventArgs)">
+            <summary>
+            Opens a save file dialog and passes the selected file name to the SaveReport method.
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:HL7_Analyst.frmReports.dgvReportItems_KeyDown(System.Object,System.Windows.Forms.KeyEventArgs)">
+            <summary>
+            Data Grid View Report Items Key Down Event: Sets up shortcut key support for saving the report.
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:HL7_Analyst.frmReports.FormatItem(System.String)">
+            <summary>
+            FormatItem Method: Formats the value string for display
+            </summary>
+            <param name="item">Item Text</param>
+            <returns>Returns the formatted object</returns>
+        </member>
+        <member name="M:HL7_Analyst.frmReports.SaveReport">
+            <summary>
+            Saves the report to disk
+            </summary>        
+        </member>
+        <member name="F:HL7_Analyst.frmReports.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:HL7_Analyst.frmReports.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:HL7_Analyst.frmReports.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="T:HL7_Analyst.frmEditField">
+            <summary>
+            Edit Field Form: Used to modify selected fields in the current message or all messages.
+            </summary>
+        </member>
+        <member name="F:HL7_Analyst.frmEditField.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:HL7_Analyst.frmEditField.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:HL7_Analyst.frmEditField.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="F:HL7_Analyst.frmEditField.Items">
+            <summary>
+            The list of edited items
+            </summary>
+        </member>
+        <member name="F:HL7_Analyst.frmEditField.EditAllMessages">
+            <summary>
+            A bool value indicating if all messages should be edited or just the current message
+            </summary>
+        </member>
+        <member name="M:HL7_Analyst.frmEditField.#ctor(System.Collections.Generic.List{System.Windows.Forms.ListViewItem})">
+            <summary>
+            Initialization Code: Takes a list of list view items that were selected for editing.
+            </summary>
+            <param name="lvis">The list view item list</param>
+        </member>
+        <member name="M:HL7_Analyst.frmEditField.dgvEditField_CellEndEdit(System.Object,System.Windows.Forms.DataGridViewCellEventArgs)">
+            <summary>
+            Data Grid Cell End Edit Event: Sets the EditItem value
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:HL7_Analyst.frmEditField.rbEditCurrent_CheckedChanged(System.Object,System.EventArgs)">
+            <summary>
+            Edit Current Checked Changed Event: Sets the public method EditAllMessages.
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="T:HL7_Analyst.frmHex">
+            <summary>
+            Displays the message passed to it in hex format
+            </summary>
+        </member>
+        <member name="M:HL7_Analyst.frmHex.#ctor(System.String)">
+            <summary>
+            Initialization Method
+            </summary>
+            <param name="message">The message to display in hex format</param>
+        </member>
+        <member name="M:HL7_Analyst.frmHex.SetHexDisplay(System.Char[])">
+            <summary>
+            Processes the character array passed to it into each of the respective data grid views on the form
+            </summary>
+            <param name="message">The hex array to process</param>
+        </member>
+        <member name="M:HL7_Analyst.frmHex.dgvMessage_CellEnter(System.Object,System.Windows.Forms.DataGridViewCellEventArgs)">
+            <summary>
+            Changes the selected cell in the Hex data grid to match the selected cell in the Message data grid
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:HL7_Analyst.frmHex.dgvHex_CellEnter(System.Object,System.Windows.Forms.DataGridViewCellEventArgs)">
+            <summary>
+            Changes the selected cell in the Message data grid to match the selected cell in the Hex data grid
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:HL7_Analyst.frmHex.dgvMessage_Scroll(System.Object,System.Windows.Forms.ScrollEventArgs)">
+            <summary>
+            Passes the scrolling position to the Hex data grid if the caller is the Message data grid, if not it sets the Message data grid scroll position to the Hex data grids scroll position.
+            This allows both data grids to scroll together.
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:HL7_Analyst.frmHex.dgvHex_Scroll(System.Object,System.Windows.Forms.ScrollEventArgs)">
+            <summary>
+            Passes the scrolling position to the Message data grid if the caller is the Hex data grid, if not it sets the Hex data grid scroll position to the Message data grids scroll position.
+            This allows both data grids to scroll together.
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="F:HL7_Analyst.frmHex.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:HL7_Analyst.frmHex.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:HL7_Analyst.frmHex.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="T:HL7_Analyst.frmAbout">
+            <summary>
+            About Form, displays copyright, version, and additional application information.
+            </summary>
+        </member>
+        <member name="M:HL7_Analyst.frmAbout.#ctor">
+            <summary>
+            Initialization Method
+            </summary>
+        </member>
+        <member name="M:HL7_Analyst.frmAbout.frmAbout_Load(System.Object,System.EventArgs)">
+            <summary>
+            Form Load Event: Sets text displays
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:HL7_Analyst.frmAbout.lblFamFamFam_LinkClicked(System.Object,System.Windows.Forms.LinkLabelLinkClickedEventArgs)">
+            <summary>
+            Link Label Click Event: Calls default internet browser to navigate to link site.
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:HL7_Analyst.frmAbout.lblIconArchive_LinkClicked(System.Object,System.Windows.Forms.LinkLabelLinkClickedEventArgs)">
+            <summary>
+            Link Label Click Event: Calls default internet browser to navigate to link site.
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:HL7_Analyst.frmAbout.lblZedGraph_LinkClicked(System.Object,System.Windows.Forms.LinkLabelLinkClickedEventArgs)">
+            <summary>
+            Link Label Click Event: Calls default internet browser to navigate to link site.
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:HL7_Analyst.frmAbout.btnLicense_Click(System.Object,System.EventArgs)">
+            <summary>
+            License Button Click Event: Currently Does Nothing.
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="F:HL7_Analyst.frmAbout.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:HL7_Analyst.frmAbout.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:HL7_Analyst.frmAbout.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="M:HL7_Analyst.Program.Main">
+            <summary>
+            The main entry point for the application
+            </summary>
+        </member>
+        <member name="T:HL7_Analyst.GraphItems">
+            <summary>
+            GraphItems Class: Used to store information about each graph item used in the graphs.
+            </summary>
+        </member>
+        <member name="M:HL7_Analyst.GraphItems.#ctor">
+            <summary>
+            Empty constructor
+            </summary>
+        </member>
+        <member name="M:HL7_Analyst.GraphItems.#ctor(System.String,System.Int32)">
+            <summary>
+            GraphItem constructor
+            </summary>
+            <param name="_Name">The name to assign to the GraphItem</param>
+            <param name="_Count">The value to assign to the GraphItem</param>
+        </member>
+        <member name="M:HL7_Analyst.GraphItems.GetGraphItem(System.Collections.Generic.List{HL7_Analyst.GraphItems},System.String)">
+            <summary>
+            Pulls the specified GraphItem from a list
+            </summary>
+            <param name="items">The list to search</param>
+            <param name="_Name">The name of the GraphItem to find</param>
+            <returns>The GraphItem that was found.</returns>
+        </member>
+        <member name="P:HL7_Analyst.GraphItems.Name">
+            <summary>
+            The Name of the item
+            </summary>
+        </member>
+        <member name="P:HL7_Analyst.GraphItems.Count">
+            <summary>
+            The Count of items with the specified name
+            </summary>
+        </member>
+        <member name="T:HL7_Analyst.frmMain">
+            <summary>
+            Main application form, displays HL7 messages in an understandable format and allows for analysis work to be performed on displayed messages.
+            </summary>
+        </member>
+        <member name="M:HL7_Analyst.frmMain.#ctor">
+            <summary>
+            Initialization Method
+            </summary>        
+        </member>
+        <member name="M:HL7_Analyst.frmMain.SegmentDisplayClearItems">
+            <summary>
+            Clears the segment display
+            </summary>
+        </member>
+        <member name="M:HL7_Analyst.frmMain.SegmentChangerClearItems">
+            <summary>
+            Clears the segment changer
+            </summary>
+        </member>
+        <member name="M:HL7_Analyst.frmMain.MessageTotalSetText(System.String)">
+            <summary>
+            Sets the Message Total text
+            </summary>
+            <param name="s">The string to use</param>
+        </member>
+        <member name="M:HL7_Analyst.frmMain.MessageBoxSetText(System.String)">
+            <summary>
+            Sets the message box text
+            </summary>
+            <param name="s">The string to use</param>
+        </member>
+        <member name="M:HL7_Analyst.frmMain.CurrentMessageSetText(System.String)">
+            <summary>
+            Sets the Current Message text
+            </summary>
+            <param name="s">The string to use</param>
+        </member>
+        <member name="M:HL7_Analyst.frmMain.FormSetText(System.String)">
+            <summary>
+            Sets the forms text
+            </summary>
+            <param name="s">The string to use</param>
+        </member>
+        <member name="M:HL7_Analyst.frmMain.SegmentChangerAddItem(System.Object)">
+            <summary>
+            Adds items to the Segment Changer
+            </summary>
+            <param name="item">The item to add</param>
+        </member>
+        <member name="M:HL7_Analyst.frmMain.SegmentDisplayAddItem(System.Windows.Forms.ListViewItem)">
+            <summary>
+            Adds items to the Segment Display
+            </summary>
+            <param name="item">The item to add</param>
+        </member>
+        <member name="M:HL7_Analyst.frmMain.FormSetCursor(System.Windows.Forms.Cursor)">
+            <summary>
+            Sets the forms cursor
+            </summary>
+            <param name="c">The cursor to use</param>
+        </member>
+        <member name="M:HL7_Analyst.frmMain.TCPIPTransferDisplayAddRow(System.Collections.Generic.List{System.Object})">
+            <summary>
+            Adds a row to the TCPIP Transfer Display
+            </summary>
+            <param name="items">The item to add</param>
+        </member>
+        <member name="M:HL7_Analyst.frmMain.MessageBoxSetFontFormat">
+            <summary>
+            Sets the font format across threads.
+            </summary>
+        </member>
+        <member name="M:HL7_Analyst.frmMain.frmMain_Load(System.Object,System.EventArgs)">
+            <summary>
+            Form Load Event: Loads application settings and the currently stored reports.
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:HL7_Analyst.frmMain.openToolStripMenuItem_Click(System.Object,System.EventArgs)">
+            <summary>
+            Open File(s) Tool Strip Menu Item Click Event: Displays an Open File Dialog and Opens The Selected File(s) after dialog closes
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:HL7_Analyst.frmMain.LoadFilesBGW_DoWork(System.Object,System.ComponentModel.DoWorkEventArgs)">
+            <summary>
+            Loads all selected files
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:HL7_Analyst.frmMain.openFolderToolStripMenuItem_Click(System.Object,System.EventArgs)">
+            <summary>
+            Open Folder Tool Stip Menu Item Click Event: Displays an Folder Selector Dialog and opens the files in selected folder and sub-folders after dialog closes.
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:HL7_Analyst.frmMain.LoadFoldersBGW_DoWork(System.Object,System.ComponentModel.DoWorkEventArgs)">
+            <summary>
+            Loads all files in each folder in selected folder
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:HL7_Analyst.frmMain.searchForFilesToolStripMenuItem_Click(System.Object,System.EventArgs)">
+            <summary>
+            Search For File(s) Tool Stip Menu Item Click Event: Calls the frmSearch dialog box to search for files, opens the returned files after dialog closes.
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:HL7_Analyst.frmMain.closeToolStripMenuItem_Click(System.Object,System.EventArgs)">
+            <summary>
+            Close Tool Stip Menu Item Click Event: Closes the application
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:HL7_Analyst.frmMain.removeMessage_Click(System.Object,System.EventArgs)">
+            <summary>
+            Remove Message Click Event (Used by Tool Strip Menu and Context Menu)
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:HL7_Analyst.frmMain.clearSession_Click(System.Object,System.EventArgs)">
+            <summary>
+            Clear Session Click Event (Used by Tool Strip Menu and Context Menu)
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:HL7_Analyst.frmMain.filterRecords_Click(System.Object,System.EventArgs)">
+            <summary>
+            Filter Records Click Event (Used by Tool Strip Menu and Context Menu)
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:HL7_Analyst.frmMain.clearFilter_Click(System.Object,System.EventArgs)">
+            <summary>
+            Clear Filter Click Event (Used by Tool Strip Menu and Context Menu)
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:HL7_Analyst.frmMain.first_Click(System.Object,System.EventArgs)">
+            <summary>
+            First Record Click Event (Used by Tool Bar Button, Tool Strip Menu, and Context Menu)
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:HL7_Analyst.frmMain.previous_Click(System.Object,System.EventArgs)">
+            <summary>
+            Previous Record Click Event (Used by Tool Bar Button, Tool Strip Menu, and Context Menu)
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:HL7_Analyst.frmMain.next_Click(System.Object,System.EventArgs)">
+            <summary>
+            Next Record Click Event  (Used by Tool Bar Button, Tool Strip Menu, and Context Menu)
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:HL7_Analyst.frmMain.last_Click(System.Object,System.EventArgs)">
+            <summary>
+            Last Record Click Event  (Used by Tool Bar Button, Tool Strip Menu, and Context Menu)
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:HL7_Analyst.frmMain.toggleSegmentDisplay_Click(System.Object,System.EventArgs)">
+            <summary>
+            Toggle Segment Display Click Event  (Used by Tool Bar Button, Tool Strip Menu, and Context Menu)
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:HL7_Analyst.frmMain.createReport_Click(System.Object,System.EventArgs)">
+            <summary>
+            Create Report Click Event  (Used by Tool Bar Button, Tool Strip Menu, and Context Menu): Builds list of ListViewItem(s) and then calls CreateReport Method
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:HL7_Analyst.frmMain.deleteReportToolStripMenuItem_Click(System.Object,System.EventArgs)">
+            <summary>
+            Delete Report Click Event: Calls the DeleteReport Method of the Reports class and then removes the item from the Report Selector box
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:HL7_Analyst.frmMain.viewUsedComponentsToolStripMenuItem_Click(System.Object,System.EventArgs)">
+            <summary>
+            View Filled Components Click Event: Calls the frmSegments form
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:HL7_Analyst.frmMain.viewMessageTypeStatistics_Click(System.Object,System.EventArgs)">
+            <summary>
+            View Message Statistics Click Event (Used by Tool Strip Menu and Context Menu)
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:HL7_Analyst.frmMain.viewHourlyTrafficStatistics_Click(System.Object,System.EventArgs)">
+            <summary>
+            View Hourly Traffic Statistics Click Event (Used by Tool Strip Menu and Context Menu)
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:HL7_Analyst.frmMain.viewDailyTrafficStatistics_Click(System.Object,System.EventArgs)">
+            <summary>
+            View Daily Traffic Statistics Click Event (Used by Tool Strip Menu and Context Menu)
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:HL7_Analyst.frmMain.tsmHideEmpty_CheckStateChanged(System.Object,System.EventArgs)">
+            <summary>
+            Hide Empty Components Check State Changed Event: Removes empty components from the Segment Display List View for the current message
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:HL7_Analyst.frmMain.optionsToolStripMenuItem_Click(System.Object,System.EventArgs)">
+            <summary>
+            Show Options Menu Click Event
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:HL7_Analyst.frmMain.aboutToolStripMenuItem_Click(System.Object,System.EventArgs)">
+            <summary>
+            Show About Box Click Event
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:HL7_Analyst.frmMain.cbSegmentChanger_SelectedIndexChanged(System.Object,System.EventArgs)">
+            <summary>
+            Segment Selector Selected Index Changed Event: Clears the Segment Display List View of Segments and Displays the Selected Segment.
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:HL7_Analyst.frmMain.txtCurrentMessage_KeyDown(System.Object,System.Windows.Forms.KeyEventArgs)">
+            <summary>
+            Current Message Text Box KeyDown Event: Sets the current message to the entered number
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:HL7_Analyst.frmMain.lvSegmentDisplay_KeyDown(System.Object,System.Windows.Forms.KeyEventArgs)">
+            <summary>
+            Sets support for copying Segment Display Values to the clipboard.
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:HL7_Analyst.frmMain.lvSegmentDisplay_DoubleClick(System.Object,System.EventArgs)">
+            <summary>
+            Segment Display Double Click Event: Calls EditFieldValues Method
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:HL7_Analyst.frmMain.editSelectedFieldValues_Click(System.Object,System.EventArgs)">
+            <summary>
+            Edit Selected Field Menu Item Click Event: Calls EditFieldValues Method
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:HL7_Analyst.frmMain.saveCurrentMessageToolStripMenuItem_Click(System.Object,System.EventArgs)">
+            <summary>
+            Save Current Message Menu Item Click Event: Opens a Save File Dialog and then saves the file specified.
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:HL7_Analyst.frmMain.saveAllMessagesToolStripMenuItem_Click(System.Object,System.EventArgs)">
+            <summary>
+            Save All Messages Menu Item Click Event: Opens a folder selection dialog and then saves all messages to that folder
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:HL7_Analyst.frmMain.deIdentifyMessages_Click(System.Object,System.EventArgs)">
+            <summary>
+            DeIdentifiy Message Menu Click Event: Calls the DeIdentifyMessages Method
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:HL7_Analyst.frmMain.btnFTPConnect_Click(System.Object,System.EventArgs)">
+            <summary>
+            Takes the selected FTP Connection Options and downloads the folders and files from the FTP site.
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:HL7_Analyst.frmMain.tvFTPDisplay_DoubleClick(System.Object,System.EventArgs)">
+            <summary>
+            Downloads the selected folders files
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:HL7_Analyst.frmMain.btnFTPDownload_Click(System.Object,System.EventArgs)">
+            <summary>
+            Creates and runs a background worker to download the selected files
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:HL7_Analyst.frmMain.FTPLoadFilesBGW_DoWork(System.Object,System.ComponentModel.DoWorkEventArgs)">
+            <summary>
+            Downloads selected files
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:HL7_Analyst.frmMain.btnFTPUpload_Click(System.Object,System.EventArgs)">
+            <summary>
+            Uploads all currently open messages to the FTP server
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:HL7_Analyst.frmMain.btnAddFTPConnection_Click(System.Object,System.EventArgs)">
+            <summary>
+            Loads the FTPConnection form to add a new FTP connection file
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:HL7_Analyst.frmMain.btnDeleteFTPConnection_Click(System.Object,System.EventArgs)">
+            <summary>
+            Deletes the selected FTP connection file
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:HL7_Analyst.frmMain.transferToolStripMenuItem_Click(System.Object,System.EventArgs)">
+            <summary>
+            Opens the FTP/TCPIP Transfer panel
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:HL7_Analyst.frmMain.tvFTPDisplay_AfterCheck(System.Object,System.Windows.Forms.TreeViewEventArgs)">
+            <summary>
+            If the item being checked is a folder all files are checked if not it just checks the item
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:HL7_Analyst.frmMain.cbTCPIPConnections_SelectedIndexChanged(System.Object,System.EventArgs)">
+            <summary>
+            Loads the selected Connection File
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:HL7_Analyst.frmMain.btnServer_Click(System.Object,System.EventArgs)">
+            <summary>
+            Creates a Background Worker and runs the TCPListener in it.
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:HL7_Analyst.frmMain.tcpListenerBGW_DoWork(System.Object,System.ComponentModel.DoWorkEventArgs)">
+            <summary>
+            Downloads all messages sent to this TCP/IP Listener
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:HL7_Analyst.frmMain.btnClient_Click(System.Object,System.EventArgs)">
+            <summary>
+            Creates a Background Worker and runs it
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:HL7_Analyst.frmMain.tcpClientBGW_DoWork(System.Object,System.ComponentModel.DoWorkEventArgs)">
+            <summary>
+            Sends all currently open messages to the connected server
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:HL7_Analyst.frmMain.btnAddTCPIPConnection_Click(System.Object,System.EventArgs)">
+            <summary>
+            Loads the TCPIP Connection Form and creates a new TCP/IP Connection File
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:HL7_Analyst.frmMain.btnDeleteTCPIPConnection_Click(System.Object,System.EventArgs)">
+            <summary>
+            Deletes the selected TCP/IP Connection File
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:HL7_Analyst.frmMain.btnLoadReport_Click(System.Object,System.EventArgs)">
+            <summary>
+            Loads the selected report.
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:HL7_Analyst.frmMain.rtbMessageBox_KeyDown(System.Object,System.Windows.Forms.KeyEventArgs)">
+            <summary>
+            Message Box Rich Text Key Down Event: Allows for Copy and Paste Support.
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:HL7_Analyst.frmMain.displayUniqueValuesToolStripMenuItem_Click(System.Object,System.EventArgs)">
+            <summary>
+            Takes all currently displayed messages and determines their unique values and the amount of occurances for each of those values and displays them in a form.
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:HL7_Analyst.frmMain.btnAddDatabaseConnection_Click(System.Object,System.EventArgs)">
+            <summary>
+            Opens the Database Connection form and adds a new item to the cbDatabaseConnections combo box.
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:HL7_Analyst.frmMain.btnDeleteDatabaseConnection_Click(System.Object,System.EventArgs)">
+            <summary>
+            Deletes the selected database connection
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:HL7_Analyst.frmMain.cbDatabaseConnections_SelectedIndexChanged(System.Object,System.EventArgs)">
+            <summary>
+            Loads the selected database connection and enables the Execute Button.
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:HL7_Analyst.frmMain.btnExecute_Click(System.Object,System.EventArgs)">
+            <summary>
+            Sets up the background worker and executes it.
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:HL7_Analyst.frmMain.bgw_DoWork(System.Object,System.ComponentModel.DoWorkEventArgs)">
+            <summary>
+            Executes the selected query and downloads the returned HL7 messages from the database.
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:HL7_Analyst.frmMain.helpDocumentationToolStripMenuItem_Click(System.Object,System.EventArgs)">
+            <summary>
+            Opens the default browser to the online documentation on CodePlex.
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:HL7_Analyst.frmMain.reportBugSuggestFeatureToolStripMenuItem_Click(System.Object,System.EventArgs)">
+            <summary>
+            Opens the default browser to the online Issue Tracker on CodePlex.
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:HL7_Analyst.frmMain.searchUsingSelectedFieldsToolStripMenuItem_Click(System.Object,System.EventArgs)">
+            <summary>
+            Pulls any selected field values and sets them to a search string
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:HL7_Analyst.frmMain.viewMessageInHexViewerToolStripMenuItem_Click(System.Object,System.EventArgs)">
+            <summary>
+            Calls the Hex form to display the current message in it.
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:HL7_Analyst.frmMain.SetMessage(System.String)">
+            <summary>
+            Reads the selected files contents and sets all HL7 messages to the Messages and AllMessages Lists.
+            </summary>
+            <param name="file">The File to Read</param>
+        </member>
+        <member name="M:HL7_Analyst.frmMain.SetDownloadedMessage(System.String)">
+            <summary>
+            Reads the selected downloaded file contents and sets all HL7 messages to the Messages and AllMessages Lists.
+            </summary>
+            <param name="contents">The contents to Read</param>
+        </member>
+        <member name="M:HL7_Analyst.frmMain.SetMessageDisplay(System.Int32)">
+            <summary>
+            Sets the selected message display items to their respective controls on the form.
+            </summary>
+            <param name="MessageIndex">The message to display</param>
+        </member>
+        <member name="M:HL7_Analyst.frmMain.SetListViewDisplay(HL7Lib.Base.Segment)">
+            <summary>
+            Sets the Segment Display List View to the selected segment
+            </summary>
+            <param name="s">The segment to display</param>
+        </member>
+        <member name="M:HL7_Analyst.frmMain.SetSegmentDisplay">
+            <summary>
+            Toggles the segment display
+            </summary>
+        </member>
+        <member name="M:HL7_Analyst.frmMain.ClearSessionDisplay">
+            <summary>
+            Clears all messages and form controls
+            </summary>
+        </member>
+        <member name="M:HL7_Analyst.frmMain.DisplayFirstRecord">
+            <summary>
+            Displays the first message
+            </summary>
+        </member>
+        <member name="M:HL7_Analyst.frmMain.DisplayPreviousRecord">
+            <summary>
+            Displays the previous message
+            </summary>
+        </member>
+        <member name="M:HL7_Analyst.frmMain.DisplayNextRecord">
+            <summary>
+            Displays the next record
+            </summary>
+        </member>
+        <member name="M:HL7_Analyst.frmMain.DisplayLastRecord">
+            <summary>
+            Displays the last record
+            </summary>
+        </member>
+        <member name="M:HL7_Analyst.frmMain.FilterRecords">
+            <summary>
+            Filters the records based on selected list view item(s).
+            </summary>
+        </member>
+        <member name="M:HL7_Analyst.frmMain.ClearFilters">
+            <summary>
+            Clears any filters that are active
+            </summary>
+        </member>
+        <member name="M:HL7_Analyst.frmMain.CreateReport(System.Collections.Generic.List{System.Windows.Forms.ListViewItem})">
+            <summary>
+            Creates a new report based on selected list view items
+            </summary>
+            <param name="lvis">The list of list view items to create report from.</param>
+        </member>
+        <member name="M:HL7_Analyst.frmMain.RemoveMessage">
+            <summary>
+            Removes the selected message from the Messages and AllMessages list and re-sets the display
+            </summary>
+        </member>
+        <member name="M:HL7_Analyst.frmMain.ViewStatistics">
+            <summary>
+            Opens the frmMessageStats form with the selected list view item.
+            </summary>
+        </member>
+        <member name="M:HL7_Analyst.frmMain.ViewHourlyTrafficStatistics">
+            <summary>
+            Opens the frmMessageStats with the MSH-7.1 Hourly option.
+            </summary>
+        </member>
+        <member name="M:HL7_Analyst.frmMain.ViewDailyTrafficStatistics">
+            <summary>
+            Opens the frmMessageStats with the MSH-7.1 Daily option.
+            </summary>
+        </member>
+        <member name="M:HL7_Analyst.frmMain.DeIdentifyMessages">
+            <summary>
+            De-Identifies all Messages
+            </summary>
+        </member>
+        <member name="M:HL7_Analyst.frmMain.EditFieldValues">
+            <summary>
+            Opens the Edit Field Form and then edits the message(s)
+            </summary>
+        </member>
+        <member name="M:HL7_Analyst.frmMain.EditValues(System.String,System.Collections.Generic.List{HL7_Analyst.EditItem})">
+            <summary>
+            Edits the message string
+            </summary>
+            <param name="msg">The message to edit</param>
+            <param name="items">The items to edit in the message</param>
+            <returns>The message string after editing</returns>
+        </member>
+        <member name="M:HL7_Analyst.frmMain.SaveMessage(System.String,System.String)">
+            <summary>
+            Saves the specified message to disk.
+            </summary>
+            <param name="msg">The message to save</param>
+            <param name="f">The file path to save to</param>
+        </member>
+        <member name="M:HL7_Analyst.frmMain.SetRTBTextFormatOptions">
+            <summary>
+            Creates a message from the current text in the RTF Box and calls the formatting methods to format the text in the RTF Box
+            </summary>
+        </member>
+        <member name="M:HL7_Analyst.frmMain.SetRTBFontFormat(System.Windows.Forms.RichTextBox,HL7Lib.Base.Message)">
+            <summary>
+            Loops over each character in the text of the RTF Box and sets it's formatting based on what character it is.
+            </summary>
+            <param name="rtb">The RichTextBox to use</param>
+            <param name="msg">The Message object to use</param>
+        </member>
+        <member name="M:HL7_Analyst.frmMain.SetRTBSelection(System.Windows.Forms.RichTextBox,System.Int32,System.Int32,System.Drawing.Color)">
+            <summary>
+            Sets the selection start and length and selection color of the RTF Box
+            </summary>
+            <param name="rtb">The RichTextBox to use</param>
+            <param name="i">The selection start</param>
+            <param name="len">The selection length</param>
+            <param name="c">The color to set selection to</param>
+        </member>
+        <member name="M:HL7_Analyst.frmMain.SearchForFiles(System.String)">
+            <summary>
+            Calls the search form and sets the returned messages to the message display
+            </summary>
+            <param name="searchTerms">The search query to use</param>
+        </member>
+        <member name="F:HL7_Analyst.frmMain.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:HL7_Analyst.frmMain.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:HL7_Analyst.frmMain.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="T:HL7_Analyst.DatabaseOptions">
+            <summary>
+            Database Options Class: Used to store and manage database options objects used in database connections.
+            </summary>
+        </member>
+        <member name="M:HL7_Analyst.DatabaseOptions.GetDatabaseConnections">
+            <summary>
+            Pulls all Database Connection files from the disk and builds a list from them
+            </summary>
+            <returns>Returns a list of all database connection files from the disk</returns>
+        </member>
+        <member name="M:HL7_Analyst.DatabaseOptions.Load(System.String)">
+            <summary>
+            Loads the specified database connection file into a DatabaseOptions object
+            </summary>
+            <param name="OptionsFile">The options file to load</param>
+            <returns>Returns a DatabaseOptions object built from the file</returns>
+        </member>
+        <member name="M:HL7_Analyst.DatabaseOptions.Save(System.String,HL7_Analyst.DatabaseOptions)">
+            <summary>
+            Saves the specified Database Options object to disk
+            </summary>
+            <param name="OptionsFile">The options file name to use</param>
+            <param name="DBOptions">The database options object to save</param>
+        </member>
+        <member name="M:HL7_Analyst.DatabaseOptions.Delete(System.String)">
+            <summary>
+            Deletes the specified options file from disk
+            </summary>
+            <param name="OptionsFile">The options file to delete</param>
+        </member>
+        <member name="P:HL7_Analyst.DatabaseOptions.SQLConnectionString">
+            <summary>
+            The SQL Connection String for this instance
+            </summary>
+        </member>
+        <member name="P:HL7_Analyst.DatabaseOptions.SQLQuery">
+            <summary>
+            The SQL Query String for this instance
+            </summary>
+        </member>
+        <member name="P:HL7_Analyst.DatabaseOptions.SQLColumn">
+            <summary>
+            The SQL Column that holds the HL7 messages to download for this instance
+            </summary>
+        </member>
+        <member name="T:HL7_Analyst.frmErrorReport">
+            <summary>
+            Error Report Form: Displays the error that was passed to it and allows user to send error report to hl7analyst@gmail.com
+            </summary>
+        </member>
+        <member name="F:HL7_Analyst.frmErrorReport.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:HL7_Analyst.frmErrorReport.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:HL7_Analyst.frmErrorReport.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="M:HL7_Analyst.frmErrorReport.#ctor(System.Exception)">
+            <summary>
+            Initialization Method: Sets the text displays to the values of the error message.
+            </summary>
+            <param name="err">Error that was thrown.</param>
+        </member>
+        <member name="M:HL7_Analyst.frmErrorReport.btnSend_Click(System.Object,System.EventArgs)">
+            <summary>
+            Send Button Click Event: Opens users default mail application and sets a message to to errors values.
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:HL7_Analyst.frmErrorReport.btnCancel_Click(System.Object,System.EventArgs)">
+            <summary>
+            Cancel Button Click Event: Closes Form.
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="T:HL7_Analyst.frmFilter">
+            <summary>
+            Filter Form: Displays the select list view items and their current values and allows you to change the filter values.
+            </summary>
+        </member>
+        <member name="F:HL7_Analyst.frmFilter.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:HL7_Analyst.frmFilter.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:HL7_Analyst.frmFilter.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="M:HL7_Analyst.frmFilter.#ctor(System.Collections.Generic.List{System.Windows.Forms.ListViewItem})">
+            <summary>
+            Initialization Method: Takes a list of list view items and displays them
+            </summary>
+            <param name="lvis">List view item list to display</param>
+        </member>
+        <member name="T:HL7_Analyst.frmDatabaseConnection">
+            <summary>
+            Database Connection Form: Allows the user to build a query to download HL7 messages
+            </summary>
+        </member>
+        <member name="M:HL7_Analyst.frmDatabaseConnection.#ctor">
+            <summary>
+            Initialization Method
+            </summary>
+        </member>
+        <member name="M:HL7_Analyst.frmDatabaseConnection.frmDatabaseConnection_Load(System.Object,System.EventArgs)">
+            <summary>
+            When the form loads it loads the frmDatabaseLogin form so the user can build a database connection string
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:HL7_Analyst.frmDatabaseConnection.cbTables_SelectedIndexChanged(System.Object,System.EventArgs)">
+            <summary>
+            Calls the AddColumns for the selected table
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:HL7_Analyst.frmDatabaseConnection.dgvColumns_RowEnter(System.Object,System.Windows.Forms.DataGridViewCellEventArgs)">
+            <summary>
+            Sets the select statement for the selected column
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:HL7_Analyst.frmDatabaseConnection.btnTest_Click(System.Object,System.EventArgs)">
+            <summary>
+            Executes the query to test it out
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:HL7_Analyst.frmDatabaseConnection.btnSave_Click(System.Object,System.EventArgs)">
+            <summary>
+            Sets up the database options object and saves it to disk.
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:HL7_Analyst.frmDatabaseConnection.btnCancel_Click(System.Object,System.EventArgs)">
+            <summary>
+            Closes the form.
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:HL7_Analyst.frmDatabaseConnection.AddTables">
+            <summary>
+            Adds the tables from the specified database to the combo box
+            </summary>
+        </member>
+        <member name="M:HL7_Analyst.frmDatabaseConnection.AddColumns(System.String)">
+            <summary>
+            Loads the columns from the specified table into the datagrid
+            </summary>
+            <param name="TBLName">The table to load</param>
+        </member>
+        <member name="F:HL7_Analyst.frmDatabaseConnection.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:HL7_Analyst.frmDatabaseConnection.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:HL7_Analyst.frmDatabaseConnection.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="T:HL7_Analyst.SearchTerm">
+            <summary>
+            SearchTerm Class: Used to parse a string for search terms
+            </summary>
+        </member>
+        <member name="M:HL7_Analyst.SearchTerm.#ctor">
+            <summary>
+            Empty Constructor
+            </summary>
+        </member>
+        <member name="M:HL7_Analyst.SearchTerm.#ctor(System.String)">
+            <summary>
+            SearchTerm Constructor
+            </summary>
+            <param name="term"></param>
+        </member>
+        <member name="M:HL7_Analyst.SearchTerm.GetSearchTerm(System.String)">
+            <summary>
+            Gets the search term from the specified search string
+            </summary>
+            <param name="term">The term to get</param>
+            <returns>Returns the SearchTerm</returns>
+        </member>
+        <member name="M:HL7_Analyst.SearchTerm.GetSearchTerms(System.String[])">
+            <summary>
+            Builds a list of SearchTerms from a string array
+            </summary>
+            <param name="terms">The string array</param>
+            <returns>A list of SearchTerms</returns>
+        </member>
+        <member name="M:HL7_Analyst.SearchTerm.GetSearchTerms(System.String)">
+            <summary>
+            Gets the search terms from a string of search terms
+            </summary>
+            <param name="terms">The string of terms to search</param>
+            <returns>The double list of search terms and search term groups</returns>
+        </member>
+        <member name="M:HL7_Analyst.SearchTerm.BuildSearchQueryString(System.Collections.Generic.List{HL7_Analyst.SearchTerm})">
+            <summary>
+            Takes a list of search terms and builds a string representation of them
+            </summary>
+            <param name="terms">The list of search terms</param>
+            <returns>The string of search terms</returns>
+        </member>
+        <member name="M:HL7_Analyst.SearchTerm.BuildSearchQueryString(System.Collections.Generic.List{System.Collections.Generic.List{HL7_Analyst.SearchTerm}})">
+            <summary>
+            Takes a list of search terms and builds a string representation of them
+            </summary>
+            <param name="terms">The list of search terms</param>
+            <returns>The string of search terms</returns>
+        </member>
+        <member name="M:HL7_Analyst.SearchTerm.PullPreviousQueries">
+            <summary>
+            Pulls the previous searches from disk for autocomplete in the search terms box
+            </summary>
+            <returns>Returns the list of previously ran searches</returns>
+        </member>
+        <member name="M:HL7_Analyst.SearchTerm.SavePreviousQueries(System.Collections.Generic.List{System.String})">
+            <summary>
+            Saves the list of previous ran searches
+            </summary>
+            <param name="list">The list of previously ran search queries</param>
+        </member>
+        <member name="P:HL7_Analyst.SearchTerm.ID">
+            <summary>
+            The ID of the search term
+            </summary>
+        </member>
+        <member name="P:HL7_Analyst.SearchTerm.Value">
+            <summary>
+            The Value of the search term
+            </summary>
+        </member>
+        <member name="T:HL7_Analyst.EditItem">
+            <summary>
+            EditItem Class: Used to store a new EditItem for use in message editing.
+            </summary>
+        </member>
+        <member name="M:HL7_Analyst.EditItem.#ctor(System.String)">
+            <summary>
+            Constructor that sets the ComponentID
+            </summary>
+            <param name="_CID">ComponentID to set for this EditItem</param>
+        </member>
+        <member name="M:HL7_Analyst.EditItem.#ctor(System.String,System.String,System.String)">
+            <summary>
+            Constructur that sets the ComponentID, OldValue, and the NewValue
+            </summary>
+            <param name="_CID">ComponentID to set for this EditItem</param>
+            <param name="_OldValue">OldValue to set for this EditItem</param>
+            <param name="_NewValue">NewValue to set for this EditItem</param>
+        </member>
+        <member name="P:HL7_Analyst.EditItem.ComponentID">
+            <summary>
+            The ComponentID of the Component
+            </summary>
+        </member>
+        <member name="P:HL7_Analyst.EditItem.NewValue">
+            <summary>
+            The NewValue of the Component
+            </summary>
+        </member>
+        <member name="P:HL7_Analyst.EditItem.OldValue">
+            <summary>
+            The OldValue of the Component
+            </summary>
+        </member>
+        <member name="T:HL7_Analyst.ReportColumn">
+            <summary>
+            ReportColumn Class: Used to create a report column item
+            </summary>
+        </member>
+        <member name="P:HL7_Analyst.ReportColumn.Name">
+            <summary>
+            The Name of the ReportColumn
+            </summary>
+        </member>
+        <member name="P:HL7_Analyst.ReportColumn.Header">
+            <summary>
+            The Header of the ReportColumn
+            </summary>
+        </member>
+        <member name="T:HL7_Analyst.Log">
+            <summary>
+            Log Class: Used to log exceptions to disk
+            </summary>
+        </member>
+        <member name="M:HL7_Analyst.Log.LogException(System.Exception)">
+            <summary>
+            Logs the specified exception to a log file on disk and returns an Error Report Form containing the error message
+            </summary>
+            <param name="err">Exception being logged</param>
+            <returns>Returns an Error Report Form</returns>
+        </member>
+        <member name="P:HL7_Analyst.Log.Error">
+            <summary>
+            The exception that is being logged
+            </summary>
+        </member>
+    </members>
+</doc>
